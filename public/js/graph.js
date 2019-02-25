@@ -275,7 +275,7 @@ function renderTooltips(svg, graph) {
 
 function renderLegend() {
     var svg = d3.select("#legend")
-        .attr("height", (commonLegendDommain.length + legendDomain.length) * 30);
+        .attr("height", (commonLegendDommain.length + legendDomain.length) * 40);
 
     svg.append("g")
         .attr("class", "legendQuant")
