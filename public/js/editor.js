@@ -10,13 +10,11 @@ codeMirror.on("change", function() {
     try {
         var models = JSON.parse(codeMirror.getValue());
 
-        console.log("Display models on change.")
         validateModels(models);
         displayModels(models);
 
         hideErrors()
     } catch (error) {
-        console.log(error);
         showErrors(error);
 }
 });
@@ -33,11 +31,8 @@ button.onclick = function() {
         filename = "models";
         }
 
-        console.log(filename);
 
         var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
         saveAs(blob, filename + ".json");
-    } catch(error) {
-        console.log(error);
-}
+    } catch(error) {}
 }

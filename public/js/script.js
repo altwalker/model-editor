@@ -30,11 +30,9 @@ function toogleText() {
     var text = element.textContent
 
     if (text == "Minimize") {
-        console.log("Min")
-        element.textContent = "Maximize"
+        element.textContent = "Maximize";
     } else {
-        console.log("Max")
-        element.textContent = "Minimize"
+        element.textContent = "Minimize";
     }
 }
 

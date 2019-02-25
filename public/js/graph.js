@@ -116,10 +116,7 @@ function createFakeVertex() {
 
 
 function setStartingEdge(graph, edge, startElementsIds) {
-    let fakeVertex = createFakeVertex()
-
-    console.log("Edge", edge);
-    console.log("Vertex", fakeVertex);
+    let fakeVertex = createFakeVertex();
 
     graph.setNode(fakeVertex.id, createVertexLabel(fakeVertex, startElementsIds));
     graph.setEdge(fakeVertex.id, edge.targetVertexId, createEdgeLable(edge), edge.id);
@@ -150,22 +147,15 @@ function createGraph(models) {
 
     var sharedStatesNames = Object.keys(sharedStates)
 
-    console.log("Vertices", vertices);
-    console.log("Edeges", edges);
-    console.log("SharedStates", sharedStates)
-
     // Automatically label each of the nodes
     vertices.forEach(function(vertex) {
         graph.setNode(vertex.id, createVertexLabel(vertex, startElementsIds));
     });
 
     edges.forEach(function(edge) {
-        console.log("Edge-Source", edge.sourceVertexId);
-
         if (edge.sourceVertexId) {
             graph.setEdge(edge.sourceVertexId, edge.targetVertexId, createEdgeLable(edge), edge.id)
         } else {
-            console.log("HERE");
             setStartingEdge(graph, edge, startElementsIds);
         }
     });
@@ -224,7 +214,6 @@ function generateNodeTooltipHTML(graph, d) {
 
 function generateEdgeTootipHtml(graph, d) {
     let edge = graph.edge(d.v, d.w, d.name);
-    console.log("Edge", edge);
     let html = "";
 
     html += "Id: <span class='font-weight-bolder'>" + edge.id + "</span><br/>";
