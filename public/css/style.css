@@ -1,21 +1,28 @@
 body {
     font: 400 14px 'Helvetica Neue', Helvetica;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
 
     margin: 0;
     padding: 0;
 }
 
+ 
 .block {
-    height: 92vh;
+    height: 75vh;
+}  
+
+
+.footer
+{
+    height: 5vh;
 }
 
 .max {
     width: 100%;
 }
 
-#maximize-button {
+#maximize-button {/*  */
     cursor: pointer;
     font-size: 0.75em;
 }
@@ -25,6 +32,10 @@ body {
 
 .CodeMirror {
     height: 100%;
+} 
+
+.CodeMirror-scroll {
+    max-height: 100%;
 }
 
 

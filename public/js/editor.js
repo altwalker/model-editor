@@ -8,15 +8,16 @@ var codeMirror = CodeMirror(document.getElementById("edditor-container"), {
 
 codeMirror.on("change", function() {
     try {
-        var models = JSON.parse(codeMirror.getValue());
+        json = codeMirror.getValue()
+        var models = JSON.parse(json);
 
         validateModels(models);
         displayModels(models);
 
         hideErrors()
     } catch (error) {
-        showErrors(error);
-}
+        showErrors(getErrorLine(error, json))
+    }
 });
 
 
