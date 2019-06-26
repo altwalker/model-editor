@@ -19,21 +19,18 @@
     <div class="container-fluid">
       <div class="row content">
         <div id="editor" class="col-md-5">
-          <h2>Editor</h2>
+            <h2>Editor</h2>
+            <div class="block border" id="edditor-container"></div>
+            <div class="border my-3">
+              <form class="form-inline my-3">
+                <div class="form-group mx-sm-3">
+                  <label for="input-filename" class="mx-3">File Name:</label>
+                  <input class="form-control" id="input-filename" placeholder="models">
+                </div>
 
-          <div class="block border" id="edditor-container"></div>
-
-          <div class="border my-3">
-            <form class="form-inline my-3">
-              <div class="form-group mx-sm-3">
-                <label for="input-filename" class="mx-3">File Name:</label>
-                <input class="form-control" id="input-filename" placeholder="models">
-              </div>
-
-              <div id="btn-save" class="btn btn-primary">Save</div>
-            </form>
-          </div>
-
+                <div id="btn-save" class="btn btn-primary">Save</div>
+              </form>
+            </div>
         </div>
 
         <div id="visualizer" class="col col-md-7">
@@ -55,8 +52,8 @@
       </div>
     </div>
 
-    <footer class="container-fluid my-3">
-      <p class="text-center">Model-Editor. Fork it on <a href="https://gitlab.com/altom/altwalker/model-editor">GitLab</a>.</p>
+    <footer class="container-fluid py-3 footer">
+      <div class="text-center">Model-Editor. Fork it on <a href="https://gitlab.com/altom/altwalker/model-editor">GitLab</a>.</div>
     </footer>
 
     <!-- DagreD3 and D3 -->

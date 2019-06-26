@@ -248,6 +248,7 @@ function addTootips(svg, tooltip, cssSelector, htlmFunction, graph) {
     svg.selectAll(cssSelector)
         .on("mouseover", (d) => {
             tooltip.transition()
+                .style("display", "block")
                 .style("opacity", 1);
 
             tooltip.html(htlmFunction(graph, d))
@@ -257,6 +258,7 @@ function addTootips(svg, tooltip, cssSelector, htlmFunction, graph) {
             })
         .on("mouseout", (d) => {
             tooltip.transition()
+                .style("display", "none")
                 .style("opacity", 0)
                 .style("cursor", "auto");
         })
@@ -266,6 +268,7 @@ function addTootips(svg, tooltip, cssSelector, htlmFunction, graph) {
 function renderTooltips(svg, graph) {
     var tooltip = d3.select("body").append("div")
         .attr("class", "tooltip")
+        .style("display", "none")
         .style("opacity", 0);
 
     addTootips(svg, tooltip, ".node", generateNodeTooltipHTML, graph);

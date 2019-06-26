@@ -2,7 +2,6 @@
 function showErrors(errorMessage) {
     var element = document.getElementById("error-box");
     element.classList.remove("d-none");
-
     element.textContent = errorMessage;
 }
 
@@ -34,6 +33,25 @@ function toogleText() {
     } else {
         element.textContent = "Minimize";
     }
+}
+
+function getErrorLine(error, json)
+{
+    var re =/at position (\d+)/
+    var match = error.toString().match(re)
+    if ( !match )
+        return error
+    error_index =parseInt (match[1])
+    line_index = 0
+    i=0
+    for(line of json.split("\n") )
+    {
+        if ( i + line.length + 1 > error_index)
+            break;
+        i+= line.length + 1
+        line_index++
+    }
+    return [error, "line " + line_index]
 }
 
 window.onload = () => {
