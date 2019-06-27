@@ -42,11 +42,11 @@ function getErrorLine(error, json)
     if ( !match )
         return error
     error_index =parseInt (match[1])
-    line_index = 0
+    line_index = 1
     i=0
     for(line of json.split("\n") )
     {
-        if ( i + line.length + 1 > error_index)
+        if ( i + line.length + 1 >= error_index)
             break;
         i+= line.length + 1
         line_index++
