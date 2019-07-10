@@ -1,4 +1,3 @@
-
 var codeMirror = CodeMirror(document.getElementById("edditor-container"), {
     value: JSON.stringify(defaultModels, null, "\t"),
     lineNumbers: true,
@@ -24,7 +23,7 @@ codeMirror.on("change", function() {
 
 const modelSnippet = `{
     "name": "",
-    "generator": "random(vertex_coverage(100))"
+    "generator": "random(vertex_coverage(100))",
     "vertices": [
 
     ],
