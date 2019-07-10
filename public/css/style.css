@@ -7,32 +7,35 @@ body {
     padding: 0;
 }
 
- 
+
 .block {
     height: 75vh;
-}  
+    max-height: 75vh;
+}
 
 
-.footer
-{
-    height: 5vh;
+.footer {
+    height: 3vh;
 }
 
 .max {
     width: 100%;
 }
 
-#maximize-button {/*  */
+#maximize-button {
     cursor: pointer;
     font-size: 0.75em;
 }
 
+.key {
+    font-size: 95%
+}
 
 /* CodeMirror */
 
 .CodeMirror {
     height: 100%;
-} 
+}
 
 .CodeMirror-scroll {
     max-height: 100%;
