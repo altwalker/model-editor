@@ -20,14 +20,12 @@ install_dependencies:
 
 lint:
   stage: lint
-  allow_failure: true
   script:
     - npm run lint:hbs
     - npm run lint:js
 
 test:
   stage: test
-  allow_failure: true
   script:
     - ember test
 
@@ -42,11 +40,10 @@ buid:
 pages:
   stage: deploy
   script:
-  - rm -rf public
-  - mv dist public
-  - ls -alt public
+    - rm -rf public
+    - mv dist public
   artifacts:
     paths:
-    - public
+      - public
   only:
   - master
