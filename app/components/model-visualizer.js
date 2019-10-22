@@ -64,7 +64,6 @@ export default Component.extend({
       const setModels = bind(this, this.get("setModels"));
       this.modelStorage.setOnModelChange(setModels);
 
-      // this.setModels(this.modelStorage.loadModel());
       visualizer.setOnModelsChange(null);
     }
   },
