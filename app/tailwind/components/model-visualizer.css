@@ -7,10 +7,6 @@
     padding: 10px 20px;
 }
 
-/* .mv-editor * {
-    margin: 5px 0;
-} */
-
 .mv-editor div {
     @apply mb-3;
 }

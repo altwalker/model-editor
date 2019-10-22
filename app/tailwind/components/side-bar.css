@@ -80,7 +80,6 @@
     transition: 0.3s;
 }
 
-
 .key {
     @apply bg-white rounded-sm p-1 px-2 font-mono text-black border-black;
 }
