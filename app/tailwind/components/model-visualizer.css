@@ -1,0 +1,56 @@
+.mv-editor {
+    @apply text-grey-darker;
+    color: #8795a1;
+    background-color: #111;
+    height: 100%;
+    width: 17.5%;
+    padding: 10px 20px;
+}
+
+/* .mv-editor * {
+    margin: 5px 0;
+} */
+
+.mv-editor div {
+    @apply mb-3;
+}
+
+.mv-editor label {
+    display: inline-block;
+}
+
+.mv-editor input {
+    @apply appearance-none bg-grey-lighter text-grey-darker py-1 px-2 ml-2 border rounded;
+    display: inline-block;
+}
+
+.mv-editor input:focus {
+    @apply outline-none border-green-light bg-white text-black;
+}
+
+.mv-editor input:disabled {
+    @apply bg-grey-dark text-white;
+}
+
+.mv-editor select {
+    @apply border rounded py-1 px-2 ml-2;
+}
+
+.mv-editor option {
+    @apply py-1 px-2;
+}
+
+.mv-editor button {
+    @apply bg-green text-white font-bold py-2 px-4 my-3 rounded;
+    display: block;
+}
+
+.mv-editor button:hover {
+    @apply bg-green-dark;
+}
+
+#mv-btn-delete-model,
+#mv-btn-delete-vertex,
+#mv-btn-delete-edge {
+    @apply bg-red;
+}

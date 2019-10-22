@@ -1,9 +1,50 @@
-image: alpine:latest
+stages:
+  - dependencies
+  - lint
+  - test
+  - build
+  - deploy
+
+image: danlynn/ember-cli
+
+cache:
+  paths:
+    - node_modules
+    - bower_components
+
+install_dependencies:
+  stage: dependencies
+  script:
+    - npm install -g ember-cli
+    - npm install
+
+lint:
+  stage: lint
+  allow_failure: true
+  script:
+    - npm run lint:hbs
+    - npm run lint:js
+
+test:
+  stage: test
+  allow_failure: true
+  script:
+    - ember test
+
+buid:
+  stage: build
+  artifacts:
+    paths:
+      - dist/
+  script:
+    - ember build --environment production
 
 pages:
   stage: deploy
   script:
-  - echo 'Nothing to do...'
+  - rm -rf public
+  - mv dist public
+  - ls -alt public
   artifacts:
     paths:
     - public

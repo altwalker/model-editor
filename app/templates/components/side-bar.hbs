@@ -1,0 +1,79 @@
+<a href="javascript:void(0)" class="side-bar-hide-button no-underline text-4xl float-right mr-8 text-grey-darkest hover:text-grey" {{action "hideSideBar"}}>
+  <CloseIcon @size="1.5rem" @color="white" />
+</a>
+
+<div class="my-16">
+  <LinkTo @route="editor" class="side-bar-link">Editor</LinkTo>
+  <LinkTo @route="visualizer" class="side-bar-link">Visualizer</LinkTo>
+  <LinkTo @route="editor-visualizer" class="side-bar-link">Editor + Visualizer</LinkTo>
+</div>
+
+<div class="mt-6">
+  <div class="p-2 pl-8 text-grey-darker">
+    <h3>Save Models</h3>
+    <Input @id="file-name" @class="d-inline py-1 px-2 mr-2" @type="text" @value={{this.fileName}} @tabindex="1" />
+
+    <button class="bg-green hover:bg-green-dark text-white font-bold py-1 px-4 my-2 rounded" {{action "saveModel"}} tabindex="2">Save</button>
+  </div>
+</div>
+
+<div class="mt-6">
+  {{!-- <div class="p-2 pl-8 text-grey-darker">
+    <h3>Settings</h3>
+
+    <div class="my-2">
+      <label>Dark Theme: </label>
+
+      <label class="switch mx-1">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+    </div>
+  </div> --}}
+
+  <div class="p-2 pl-8 text-grey-darker">
+    <h3>Editor Settings</h3>
+
+    <div class="my-2">
+      <div class="my-2">
+        <label>Font Size:</label>
+        <Select-Dropdown @id="font-size-select" @class="inline-block" @onSelect={{action "selectFontSize"}} @items={{this.fontSizes}} @selectedItem={{this.fontSize}} />
+      </div>
+
+      <div class="my-2">
+        <label>Theme:</label>
+        <Select-Dropdown @id="theme-select" @class="inline-block" @onSelect={{action "selectTheme"}} @items={{this.themes}} @selectedItem={{this.theme}} />
+      </div>
+    </div>
+  </div>
+
+  {{!-- <div class="p-2 pl-8 text-grey-darker">
+    <h3>Visualizer Settings</h3>
+
+    <div class="my-2">
+      <label>Graph Direction:</label>
+      <Select-Dropdown @id="graph-direction-select" @class="inline-block" @onSelect={{action "selectGraphDirection"}} @items={{this.graphDirections}} @selectedItem={{this.graphDirection}} />
+    </div>
+  </div> --}}
+
+  <div class="p-2 pl-8 text-grey-darker">
+    <h3>Editor Shortcuts</h3>
+
+    <ul class="list-reset">
+      <li class="my-3">Autocomplete: <span class="key">Ctrl</span> + <span class="key">Space</span></li>
+      <li class="my-3">Snippets: <span class="key">Ctrl</span> + <span class="key">E</span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="my-8">
+  <div class="p-2 pl-8 text-grey-darker">
+    <p class="p-1">Fork this project on <a href="https://gitlab.com/altom/altwalker/model-editor" class="no-underline text-green">GitLab</a></p>
+    <p class="p-1">Read more about <a href="https://altom.gitlab.io/altwalker/altwalker/index.html" class="no-underline text-green">AltWalker</a></p>
+  </div>
+</div>
+
+{{!-- <div class="side-bar-footer text-white">
+  <p class="p-1">Fork this project on <a href="https://gitlab.com/altom/altwalker/model-editor" class="no-underline text-green">GitLab</a></p>
+  <p class="p-1">Read more about <a href="https://altom.gitlab.io/altwalker/altwalker/index.html" class="no-underline text-green">AltWalker</a></p>
+</div> --}}

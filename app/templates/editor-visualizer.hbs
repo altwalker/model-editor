@@ -1,0 +1,39 @@
+<div class="flex flex-row w-full h-v-90">
+  <div class="w-1/2 pr-2">
+    <div class="flex flex-col h-v-85">
+      <div class="py-1">
+        <h2 class="inline-block">Editor</h2>
+
+        <div class="inline-block mx-1">
+          <LinkTo @route="editor" class="no-underline">
+            <MaximizeIcon @size="18" @color="black" @strokeWidth="2.5" />
+          </LinkTo>
+        </div>
+      </div>
+
+      <JsonEditor @class="w-full" @onError={{action "setError"}} />
+    </div>
+  </div>
+
+  <div class="w-1/2 pl-2">
+    <div class="flex flex-col h-v-85">
+      <div class="py-1">
+        <h2 class="inline-block">Visualizer</h2>
+
+        <div class="inline-block mx-1">
+          <LinkTo @route="visualizer" class="no-underline">
+            <MaximizeIcon @size="18" @color="black" @strokeWidth="2.5" />
+          </LinkTo>
+        </div>
+
+        <div class="inline-block float-right mr-1">
+          <LinkTo @route="visualizer" @query={{hash editMode="true"}} @class="no-underline {{if (not-eq error null) "cursor-not-allowed" ""}}" @disabled={{not-eq error null}}>
+            <EditIcon @color="black" @size="18" />
+          </LinkTo>
+        </div>
+      </div>
+
+      <ModelVisualizer @class="w-full" @editMode={{false}} @ignoreErrors={{true}} />
+    </div>
+  </div>
+</div>

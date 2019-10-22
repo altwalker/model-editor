@@ -1,0 +1,18 @@
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
+import { visit, currentURL } from '@ember/test-helpers';
+
+module('Unit | Route | index', function(hooks) {
+  setupTest(hooks);
+
+  test('it exists', function(assert) {
+    let route = this.owner.lookup('route:index');
+    assert.ok(route);
+  });
+
+  test('should show editor-visualizer as the home page', async function (assert) {
+    await visit('/');
+
+    assert.equal(currentURL(), '/editor-visualizer', 'Should redirect automatically');
+  });
+});
