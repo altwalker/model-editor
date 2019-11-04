@@ -1,9 +1,14 @@
 import Controller from '@ember/controller';
+import { computed } from '@ember/object';
 
 export default Controller.extend({
   queryParams: ['editMode'],
   editMode: false,
   error: null,
+
+  title: computed("editMode", function() {
+    return this.editMode ? "Graph Editor" : "Graph Visualizer";
+  }),
 
   actions: {
     toggleEditMode() {

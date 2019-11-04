@@ -3,7 +3,9 @@ import { inject as service } from '@ember/service';
 import { bind } from '@ember/runloop';
 
 export default Component.extend({
-  modelStorage : service('model-storage'),
+  modelStorage : service("model-storage"),
+  settings: service("settings"),
+
   visualizer: null,
 
   onError: null,
@@ -23,7 +25,12 @@ export default Component.extend({
     this.updateEditMode();
 
     const refresh = bind(this, this.get("refresh"));
-    window.addEventListener("resize", refresh)
+    window.addEventListener("resize", refresh);
+
+    const setGraphLayoutOptions = bind(this, this.get("setGraphLayoutOptions"));
+    this.settings.setOnGraphLayoutOptionsChange(setGraphLayoutOptions);
+
+    this.setGraphLayoutOptions(this.settings.getGraphLayoutOptions());
   },
 
   didUpdateAttrs() {
@@ -36,6 +43,8 @@ export default Component.extend({
     window.removeEventListener("resize", refresh)
 
     this.modelStorage.setOnModelChange(null);
+
+    this.settings.setOnGraphLayoutOptionsChange(null);
 
     this._super(...arguments);
   },
@@ -83,5 +92,17 @@ export default Component.extend({
     if (visualizer) {
       visualizer.repaint();
     }
+  },
+
+  setGraphLayoutOptions(options) {
+    const visualizer = this.get("visualizer");
+    const layoutOptions = {
+      "rankdir": options["graphDirection"],
+      "nodesep": options["vertexSeparation"],
+      "edgesep": options["edgeSeparation"],
+      "ranksep": options["rankSeparation"]
+    }
+
+    visualizer.setGraphLayoutOptions(layoutOptions);
   },
 });

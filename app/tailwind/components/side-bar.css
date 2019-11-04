@@ -4,7 +4,6 @@
 
 .side-bar {
     position: fixed;
-
     z-index: 6;
     top: 0;
     left: 0;
@@ -13,6 +12,14 @@
     overflow-x: hidden;
 
     transition: 0.5s;
+}
+
+.side-bar-shown {
+    width: 400px;
+}
+
+.side-bar-hidden {
+    width: 0;
 }
 
 .overlay {
@@ -30,6 +37,14 @@
     background-color: rgba(0,0,0, 0.5);
 
     z-index: 5;
+}
+
+.overlay-shown {
+    display: block;
+}
+
+.overlay-hidden {
+    display: none;
 }
 
 .animate-opacity-in {
@@ -53,11 +68,11 @@
 /* The navigation menu links */
 
 .side-bar-link {
-    @apply block no-underline text-2xl text-grey-dark p-1 pl-8;
+    @apply block no-underline text-2xl text-grey-light py-1;
 }
 
 .side-bar-link:hover {
-    @apply text-grey;
+    @apply text-green;
 }
 
 .side-bar a {
@@ -81,5 +96,5 @@
 }
 
 .key {
-    @apply bg-white rounded-sm p-1 px-2 font-mono text-black border-black;
+    @apply bg-white py-1 px-2 font-mono text-black border rounded;
 }

@@ -2,73 +2,85 @@
   <CloseIcon @size="1.5rem" @color="white" />
 </a>
 
-<div class="my-16">
-  <LinkTo @route="editor" class="side-bar-link">Editor</LinkTo>
-  <LinkTo @route="visualizer" class="side-bar-link">Visualizer</LinkTo>
-  <LinkTo @route="editor-visualizer" class="side-bar-link">Editor + Visualizer</LinkTo>
-</div>
+<div class="side-bar-container px-8">
 
-<div class="mt-6">
-  <div class="p-2 pl-8 text-grey-darker">
-    <h3>Save Models</h3>
-    <Input @id="file-name" @class="d-inline py-1 px-2 mr-2" @type="text" @value={{this.fileName}} @tabindex="1" />
-
-    <button class="bg-green hover:bg-green-dark text-white font-bold py-1 px-4 my-2 rounded" {{action "saveModel"}} tabindex="2">Save</button>
+  <div class="my-12">
+    <LinkTo @route="editor" class="side-bar-link">Json Editor</LinkTo>
+    <LinkTo @route="visualizer" class="side-bar-link">Graph Visualizer</LinkTo>
+    <LinkTo @route="editor-visualizer" class="side-bar-link">Json Editor + <br> Graph Visualizer</LinkTo>
   </div>
-</div>
 
-<div class="mt-6">
-  {{!-- <div class="p-2 pl-8 text-grey-darker">
-    <h3>Settings</h3>
+  <div class="my-6">
+    <div class="py-2 text-grey-darker">
+      <h3 class="my-3 text-grey">Save Models</h3>
+      <Input @id="file-name" @class="d-inline py-1 px-2 mr-2" @type="text" @value={{this.fileName}} @tabindex="1" />
 
-    <div class="my-2">
-      <label>Dark Theme: </label>
-
-      <label class="switch mx-1">
-        <input type="checkbox">
-        <span class="slider round"></span>
-      </label>
+      <button class="bg-green hover:bg-green-dark text-white font-bold py-1 px-4 my-2 rounded" {{action "saveModel"}} tabindex="2">Save</button>
     </div>
-  </div> --}}
+  </div>
 
-  <div class="p-2 pl-8 text-grey-darker">
-    <h3>Editor Settings</h3>
-
-    <div class="my-2">
-      <div class="my-2">
-        <label>Font Size:</label>
-        <Select-Dropdown @id="font-size-select" @class="inline-block" @onSelect={{action "selectFontSize"}} @items={{this.fontSizes}} @selectedItem={{this.fontSize}} />
-      </div>
+  <div class="my-6">
+    <div class="my-12 text-grey-darker">
+      <h3 class="my-5 text-grey">Editor Settings</h3>
 
       <div class="my-2">
-        <label>Theme:</label>
-        <Select-Dropdown @id="theme-select" @class="inline-block" @onSelect={{action "selectTheme"}} @items={{this.themes}} @selectedItem={{this.theme}} />
+        <div class="my-2">
+          <label>Font Size:</label>
+          <Select-Dropdown @id="font-size-select" @class="inline-block ml-1" @onSelect={{action "selectFontSize"}} @items={{this.fontSizes}} @selectedItem={{this.fontSize}} />
+        </div>
+
+        <div class="my-2">
+          <label>Theme:</label>
+          <Select-Dropdown @id="theme-select" @class="inline-block ml-1" @onSelect={{action "selectTheme"}} @items={{this.themes}} @selectedItem={{this.theme}} />
+        </div>
+      </div>
+
+      <div class="my-4">
+        <h4 class="my-1 text-grey">Shortcuts</h4>
+
+        <ul class="list-reset">
+          <li class="my-4">Autocomplete: <span class="key">Ctrl</span> + <span class="key">Space</span></li>
+          <li class="my-4">Snippets: <span class="key">Ctrl</span> + <span class="key">E</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="my-12 text-grey-darker">
+      <h3 class="my-5 text-grey">Visualizer Settings</h3>
+
+      <div class="my-2">
+        <label>Graph Direction:</label>
+        <Select-Dropdown @id="graph-direction-select" @class="inline-block ml-1" @onSelect={{action "selectGraphDirection"}} @items={{this.graphDirections}} @selectedItem={{this.graphDirection}} />
+      </div>
+
+      <div class="my-3">
+        <div class="range-slider-container">
+          <p class="mb-2">Vertex Separation: <span class="text-grey">{{this.vertexSeparation}}</span></p>
+          <Input @type="range" @min={{this.minVertexSeparation}} @max={{this.maxVertexSeparation}} @value={{this.vertexSeparation}} @steps="1" @class="range-slider" @input={{action "updteVertexSeparation" this.vertexSeparation}} />
+        </div>
+      </div>
+
+      <div class="my-3">
+        <div class="range-slider-container">
+          <p class="mb-2">Edge Separation: <span class="text-grey">{{this.edgeSeparation}}</span></p>
+          <Input @type="range" @min={{this.minEdgeSeparation}} @max={{this.maxEdgeSeparation}} @value={{this.edgeSeparation}} @steps="1" @class="range-slider" @input={{action "updteEdgeSeparation" this.edgeSeparation}} />
+        </div>
+      </div>
+
+      <div class="my-3">
+        <div class="range-slider-container">
+          <p class="mb-2">Rank Separation: <span class="text-grey">{{this.rankSeparation}}</span></p>
+          <Input @type="range" @min={{this.minRankSeparation}} @max={{this.maxRankSeparation}}  @value={{this.rankSeparation}} @steps="1" @class="range-slider" @input={{action "updteRankSeparation" this.rankSeparation}} />
+        </div>
       </div>
     </div>
   </div>
 
-  {{!-- <div class="p-2 pl-8 text-grey-darker">
-    <h3>Visualizer Settings</h3>
-
-    <div class="my-2">
-      <label>Graph Direction:</label>
-      <Select-Dropdown @id="graph-direction-select" @class="inline-block" @onSelect={{action "selectGraphDirection"}} @items={{this.graphDirections}} @selectedItem={{this.graphDirection}} />
+  <div class="mt-8">
+    <div class="py-2 text-grey-darker">
+      <p class="my-1">Fork this project on <a href="https://gitlab.com/altom/altwalker/model-editor" class="no-underline text-green">GitLab</a></p>
+      <p class="my-1">Read more about <a href="https://altom.gitlab.io/altwalker/altwalker/index.html" class="no-underline text-green">AltWalker</a></p>
     </div>
-  </div> --}}
-
-  <div class="p-2 pl-8 text-grey-darker">
-    <h3>Editor Shortcuts</h3>
-
-    <ul class="list-reset">
-      <li class="my-3">Autocomplete: <span class="key">Ctrl</span> + <span class="key">Space</span></li>
-      <li class="my-3">Snippets: <span class="key">Ctrl</span> + <span class="key">E</span></li>
-    </ul>
-  </div>
-</div>
-
-<div class="my-8">
-  <div class="p-2 pl-8 text-grey-darker">
-    <p class="p-1">Fork this project on <a href="https://gitlab.com/altom/altwalker/model-editor" class="no-underline text-green">GitLab</a></p>
-    <p class="p-1">Read more about <a href="https://altom.gitlab.io/altwalker/altwalker/index.html" class="no-underline text-green">AltWalker</a></p>
   </div>
 </div>

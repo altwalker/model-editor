@@ -12,19 +12,19 @@ module('Integration | Component | model-visualizer', function(hooks) {
     assert.ok(this.element.querySelector(".mv-visualizer"));
   });
 
-  test('it should not renders in edit mode as default', async function(assert) {
+  test('it should not render in edit mode as default', async function(assert) {
     await render(hbs`<ModelVisualizer />`);
 
     assert.notOk(this.element.querySelector(".mv-editor"));
   });
 
-  test('it should not renders in edit mode', async function(assert) {
+  test('it should not render in edit mode', async function(assert) {
     await render(hbs`<ModelVisualizer @editMode={{false}} />`);
 
     assert.notOk(this.element.querySelector(".mv-editor"));
   });
 
-  test('it should renders in edit mode', async function(assert) {
+  test('it should render in edit mode', async function(assert) {
     await render(hbs`<ModelVisualizer @editMode={{true}} />`);
 
     assert.ok(this.element.querySelector(".mv-editor"));

@@ -9,7 +9,7 @@ module('Unit | Controller | visualizer', function(hooks) {
     assert.ok(controller);
   });
 
-  test('it should update error on setError action', async function(assert) {
+  test('it should update error on setError action', function(assert) {
     let controller = this.owner.lookup('controller:visualizer');
 
     assert.equal(controller.get('error'), null);
@@ -20,7 +20,7 @@ module('Unit | Controller | visualizer', function(hooks) {
     assert.equal(controller.get('error'), error);
   });
 
-  test('it should set editMode to false on setError action', async function(assert) {
+  test('it should set editMode to false on setError action', function(assert) {
     let controller = this.owner.lookup('controller:visualizer');
     controller.set("editMode", true);
 
@@ -30,7 +30,7 @@ module('Unit | Controller | visualizer', function(hooks) {
     assert.equal(controller.get('editMode'), false);
   });
 
-  test('it should not set editMode to false when setError action is called with null', async function(assert) {
+  test('it should not set editMode to false when setError action is called with null', function(assert) {
     let controller = this.owner.lookup('controller:visualizer');
     controller.set("editMode", true);
 
@@ -39,7 +39,7 @@ module('Unit | Controller | visualizer', function(hooks) {
     assert.equal(controller.get('editMode'), true);
   });
 
-  test('it should toogle editMode on toggleEditMode action', async function(assert) {
+  test('it should toogle editMode on toggleEditMode action', function(assert) {
     let controller = this.owner.lookup('controller:visualizer');
     controller.set("editMode", true);
 
@@ -50,7 +50,7 @@ module('Unit | Controller | visualizer', function(hooks) {
     assert.equal(controller.get('editMode'), true);
   });
 
-  test('it should not toggle editMode on toggleEditMode action if error is set', async function(assert) {
+  test('it should not toggle editMode on toggleEditMode action if error is set', function(assert) {
     let controller = this.owner.lookup('controller:visualizer');
     controller.set("editMode", false);
     controller.set("error", {"name": "ValidationError", "message": "Invalid models."});
@@ -60,5 +60,21 @@ module('Unit | Controller | visualizer', function(hooks) {
 
     controller.send('toggleEditMode');
     assert.equal(controller.get('editMode'), false);
-  })
+  });
+
+  test('it should set the title to Graph Editor when editMode is true', function(assert) {
+    let controller = this.owner.lookup('controller:visualizer');
+
+    controller.set("editMode", true);
+
+    assert.equal(controller.get('title'), "Graph Editor");
+
+  });
+
+  test('it should set the title to Graph Visualizer when editMode is false', function(assert) {
+    let controller = this.owner.lookup('controller:visualizer');
+    controller.set("editMode", false);
+
+    assert.equal(controller.get('title'), "Graph Visualizer");
+  });
 });

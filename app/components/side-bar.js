@@ -8,11 +8,24 @@ export default Component.extend({
 
   fontSizes: oneWay('settings.fontSizes'),
   themes: oneWay('settings.themes'),
+
   graphDirections: oneWay('settings.graphDirections'),
 
   fontSize: oneWay('settings.fontSize'),
   theme: oneWay('settings.theme'),
+
   graphDirection: oneWay('settings.graphDirection'),
+  vertexSeparation: oneWay('settings.vertexSeparation'),
+  edgeSeparation: oneWay('settings.edgeSeparation'),
+  rankSeparation: oneWay('settings.rankSeparation'),
+
+  minVertexSeparation: oneWay('settings.minVertexSeparation'),
+  minEdgeSeparation: oneWay('settings.minEdgeSeparation'),
+  minRankSeparation: oneWay('settings.minRankSeparation'),
+
+  maxVertexSeparation: oneWay('settings.maxVertexSeparation'),
+  maxEdgeSeparation: oneWay('settings.maxEdgeSeparation'),
+  maxRankSeparation: oneWay('settings.maxRankSeparation'),
 
   fileName: "models",
 
@@ -31,6 +44,18 @@ export default Component.extend({
 
     selectGraphDirection(selected) {
       this.settings.setGraphDirection(selected);
+    },
+
+    updteVertexSeparation(value) {
+      this.settings.setVertexSeparation(value);
+    },
+
+    updteEdgeSeparation(value) {
+      this.settings.setEdgeSeparation(value);
+    },
+
+    updteRankSeparation(value) {
+      this.settings.setRankSeparation(value);
     },
 
     saveModel() {
