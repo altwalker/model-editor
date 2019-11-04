@@ -9,7 +9,7 @@ module('Unit | Controller | editor-visualizer', function(hooks) {
     assert.ok(controller);
   });
 
-  test('it should update error on setError action', async function(assert) {
+  test('it should update error on setError action', function(assert) {
     let controller = this.owner.lookup('controller:editor-visualizer');
 
     assert.equal(controller.get('error'), null);

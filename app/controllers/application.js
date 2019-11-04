@@ -1,15 +1,15 @@
 import Controller from '@ember/controller';
 
 export default Controller.extend({
+  isSideBarShown: false,
+
   actions: {
     showSideBar() {
-      document.getElementById("side-bar").style.width = "350px";
-      document.getElementById("overlay").style.display = "block";
+      this.set("isSideBarShown", true);
     },
 
     hideSideBar() {
-      document.getElementById("side-bar").style.width = "0";
-      document.getElementById("overlay").style.display = "none";
+      this.set("isSideBarShown", false);
     }
   }
 });

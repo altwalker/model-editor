@@ -1,6 +1,6 @@
-<Side-Bar @id="side-bar" @class="side-bar h-full w-0 py-4" @hideSideBar={{action "hideSideBar"}} />
+<Side-Bar @id="side-bar" @class="side-bar h-full py-4 {{if this.isSideBarShown "side-bar-shown" "side-bar-hidden"}}" @hideSideBar={{action "hideSideBar"}} />
 
-<div id="overlay" class="overlay animate-opacity-in" {{action "hideSideBar"}} role="button"></div>
+<div id="overlay" class="overlay animate-opacity-in {{if this.isSideBarShown "overlay-shown" "overlay-hidden"}}" {{action "hideSideBar"}} role="button"></div>
 
 <div id="main" class="h-screen w-screen max-w-screen px-4 pt-4 bg-grey-lightest">
   <Header-Bar @class="header-bar" @showSideBar={{action "showSideBar"}} />
