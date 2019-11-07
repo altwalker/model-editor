@@ -17,6 +17,7 @@ install_dependencies:
   script:
     - npm install -g ember-cli
     - npm install --only=dev
+    - npm install vue
     
 lint:
   stage: lint
