@@ -79,8 +79,8 @@ export default Service.extend({
 
   defaultGraphDirection: "Top-Bottom",
   defaultVertexSeparation: 50,
-  defaultEdgeSeparation: 10,
-  defaultRankSeparation: 10,
+  defaultEdgeSeparation: 50,
+  defaultRankSeparation: 50,
 
   minVertexSeparation: 1,
   minEdgeSeparation: 1,
