@@ -41,6 +41,8 @@ buid:
 
 pages:
   stage: deploy
+  dependencies:
+    - build
   script:
     - rm -rf public
     - mv dist public
