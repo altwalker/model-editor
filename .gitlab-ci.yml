@@ -8,7 +8,7 @@ stages:
 image: danlynn/ember-cli
 
 cache:
-  key: "$CI_JOB_ID"
+  key: "$CI_PIPELINE_ID"
   paths:
     - node_modules
     - bower_components
