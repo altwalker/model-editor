@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Model-Editor - A web based editor for AltWalker and GraphWalker models.</title>
+    <meta name="description" content="Create or edit your AltWalker and GraphWalker JSON models.">
+
+    <meta property="og:title" content="Model-Editor - A web based editor for AltWalker and GraphWalker models.">
+    <meta property="og:description" content="Create or edit your AltWalker and GraphWalker JSON models.">
+    <meta property="og:image" content="{{rootURL}}screenshots/screenshot.png">
+
+    {{content-for "head"}}
+
+    <!-- Model-Visualizer: remove when the library is deployed -->
+    <link rel="stylesheet" href="https://altom.gitlab.io/altwalker/model-visualizer/model-visualizer.css">
+
+    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/model-editor.css">
+
+    {{content-for "head-footer"}}
+  </head>
+  <body>
+    {{content-for "body"}}
+
+    <script src="{{rootURL}}assets/vendor.js"></script>
+    <script src="{{rootURL}}assets/model-editor.js"></script>
+
+    <!-- Model-Visualizer: remove when the library is deployed -->
+    <script src="https://altom.gitlab.io/altwalker/model-visualizer/model-visualizer.js"></script>
+
+    {{content-for "body-footer"}}
+  </body>
+</html>

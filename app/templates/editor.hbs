@@ -1,0 +1,13 @@
+<div class="flex flex-no-wrap flex-col h-full">
+  <div class="flex-initial py-1">
+    <h2 class="inline-block">Json Editor</h2>
+
+    <div class="inline-block mx-1">
+      <LinkTo @route="editor-visualizer" class="no-underline fill-sunflower">
+        <MinimizeIcon @size="18" @color="black" @strokeWidth="2.5" />
+      </LinkTo>
+    </div>
+  </div>
+
+  <JsonEditor @class="h-full" />
+</div>

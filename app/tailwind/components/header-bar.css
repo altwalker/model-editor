@@ -1,0 +1,7 @@
+/**
+ * Header Bar
+**/
+
+.header-bar * {
+    display: inline-block;
+}

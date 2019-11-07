@@ -1,0 +1,100 @@
+/**
+ * Side Bar
+**/
+
+.side-bar {
+    position: fixed;
+    z-index: 6;
+    top: 0;
+    left: 0;
+
+    background-color: #111;
+    overflow-x: hidden;
+
+    transition: 0.5s;
+}
+
+.side-bar-shown {
+    width: 400px;
+}
+
+.side-bar-hidden {
+    width: 0;
+}
+
+.overlay {
+    position: fixed;
+    display: none;
+
+    width: 100%;
+    height: 100%;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: rgba(0,0,0, 0.5);
+
+    z-index: 5;
+}
+
+.overlay-shown {
+    display: block;
+}
+
+.overlay-hidden {
+    display: none;
+}
+
+.animate-opacity-in {
+    animation: opacity-in 0.8s;
+}
+
+.animate-opacity-out {
+    animation: opacity-out 3s;
+}
+
+@keyframes opacity-in {
+    from { opacity: 0 }
+    to { opacity: 1 }
+}
+
+@keyframes opacity-out {
+    from { opacity: 1 }
+    to { opacity: 0 }
+}
+
+/* The navigation menu links */
+
+.side-bar-link {
+    @apply block no-underline text-2xl text-grey-light py-1;
+}
+
+.side-bar-link:hover {
+    @apply text-green;
+}
+
+.side-bar a {
+    transition: 0.5s;
+}
+
+.side-bar-show-button {
+    color: #818181;
+}
+
+.side-bar .side-bar-footer {
+    position: absolute;
+    display: block;
+    bottom: 25px;
+
+    padding: 8px 8px 8px 32px;
+
+    color: #818181;
+
+    transition: 0.3s;
+}
+
+.key {
+    @apply bg-white py-1 px-2 font-mono text-black border rounded;
+}
