@@ -37,7 +37,7 @@ buid:
     paths:
       - dist/
   script:
-    - ember build --environment production
+    - ember build --environment development
 
 pages:
   stage: deploy
