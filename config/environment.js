@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'model-editor',
     environment,
     rootURL: '/',
-    locationType: 'auto',
+    locationType: 'hash',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -46,7 +46,7 @@ module.exports = function(environment) {
   if (environment === 'production') {
     // here you can enable a production-specific feature
     ENV.rootURL = 'altwalker/model-editor';
-    ENV.locationType = 'auto';
+    ENV.locationType = 'hash';
   }
 
   return ENV;
