@@ -132,7 +132,10 @@
 .mv-add-action {
     @apply bg-green text-white font-bold py-1 px-4 my-3 ml-1 rounded;
 
-    text-decoration: none;
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+
+    display: inline-block !important;
 }
 
 .mv-add-action:hover {
@@ -142,7 +145,11 @@
 .mv-remove-action {
     @apply bg-red text-white font-bold py-1 px-4 my-3 rounded;
 
-    text-decoration: none;
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+
+    background-color: #E3342F !important;
+    display: inline-block !important;
 }
 
 .mv-remove-action:hover {
