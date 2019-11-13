@@ -18,7 +18,7 @@ install_dependencies:
   script:
     - npm install -g ember-cli
     - npm install --only=dev
-    
+
 lint:
   stage: lint
   script:
@@ -36,7 +36,7 @@ build:
     paths:
       - dist/
   script:
-    - ember build --environment production 
+    - ember build --environment production
 
 pages:
   stage: deploy
