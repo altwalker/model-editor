@@ -1,9 +1,4 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 
-export default Component.extend({
-  actions: {
-    showSideBar() {
-      this.showSideBar();
-    }
-  }
-});
+export default class HeaderBarComponent extends Component {
+}

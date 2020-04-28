@@ -7,13 +7,17 @@ module('Integration | Component | header-bar', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    await render(hbs`<HeaderBar />`);
+    this.set("showSideBar", function() {});
+
+    await render(hbs`<HeaderBar @showSideBarCallback={{this.showSideBar}} />`);
 
     assert.ok(this.element.textContent.trim());
   });
 
   test('it renders the header', async function(assert) {
-    await render(hbs`<HeaderBar />`);
+    this.set("showSideBar", function() {});
+
+    await render(hbs`<HeaderBar @showSideBarCallback={{this.showSideBar}} />`);
 
     assert.equal(this.element.querySelector("h1").textContent.trim(), "Model-Editor");
   });
@@ -24,7 +28,7 @@ module('Integration | Component | header-bar', function(hooks) {
       called = true;
     });
 
-    await render(hbs`<HeaderBar @showSideBar={{this.showSideBar}} />`);
+    await render(hbs`<HeaderBar @showSideBarCallback={{this.showSideBar}} />`);
 
     assert.notOk(called);
 

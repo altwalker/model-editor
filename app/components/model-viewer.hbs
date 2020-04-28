@@ -1,0 +1,13 @@
+<div class="flex flex-col h-v-85">
+  {{#if (and @error (not @ignoreErrors))}}
+    <ErrorAlert @id="visualizer-error" @class="flex-initial" @error={{error}} />
+  {{/if}}
+
+  <div class="h-v-85 border border-black bg-white">
+    <div id="visualizer"
+      {{did-insert this.createModelViewer}}
+      {{did-update this.updateEditMode @editMode}}
+      {{will-destroy this.destroyModelViewer}}>
+    </div>
+  </div>
+</div>

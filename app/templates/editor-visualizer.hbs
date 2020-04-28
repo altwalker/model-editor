@@ -11,7 +11,7 @@
         </div>
       </div>
 
-      <JsonEditor @class="w-full" @onError={{action "setError"}} />
+      <JsonEditor @class="w-full" @onError={{this.setError}} />
     </div>
   </div>
 
@@ -21,19 +21,19 @@
         <h2 class="inline-block">Graph Visualizer</h2>
 
         <div class="inline-block mx-1">
-          <LinkTo @route="visualizer" class="no-underline">
+          <LinkTo class="no-underline" @route="visualizer">
             <MaximizeIcon @size="18" @color="black" @strokeWidth="2.5" />
           </LinkTo>
         </div>
 
         <div class="inline-block float-right mr-1">
-          <LinkTo @route="visualizer" @query={{hash editMode="true"}} @class="no-underline {{if (not-eq error null) "cursor-not-allowed" ""}}" @disabled={{not-eq error null}}>
+          <LinkTo class="no-underline {{if (not-eq error null) "cursor-not-allowed" ""}}" @route="visualizer" @query={{hash editMode="true"}} @disabled={{not-eq error null}}>
             <EditIcon @color="black" @size="18" />
           </LinkTo>
         </div>
       </div>
 
-      <ModelVisualizer @class="w-full" @editMode={{false}} @ignoreErrors={{true}} />
+      <ModelViewer @class="w-full" @editMode={{false}} @ignoreErrors={{true}} />
     </div>
   </div>
 </div>

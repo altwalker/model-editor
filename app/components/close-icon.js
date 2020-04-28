@@ -1,7 +1,4 @@
-import Component from '@ember/component';
+import IconComponent from './icon';
 
-export default Component.extend({
-  size: 24,
-  strokeWidth: 2,
-  color: "black"
-});
+export default class CloseIconComponent extends IconComponent {
+}

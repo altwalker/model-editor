@@ -1,5 +1,7 @@
 import Component from '@ember/component';
+import { action } from '@ember/object';
 import { bind, once } from '@ember/runloop';
+import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 
 const modelSnippet = `{
@@ -43,24 +45,24 @@ function indentSnippets(snippets, indent) {
   return snippets.map((item) => indentSnippet(item, indent))
 }
 
-export default Component.extend({
-  modelStorage : service('model-storage'),
-  settings : service('settings'),
+export default class JsonEditorComponent extends Component {
+  @service modelStorage;
+  @service settings;
 
-  error: null,
-  onError: null,
+  @tracked error = null;
+  @tracked value = "";
 
-  onUpdate: null,
+  onError = null;
+  onUpdate = null;
 
-  init() {
-    this._super(...arguments);
+  constructor() {
+    super(...arguments);
 
     this.setValue(this.modelStorage.loadModel());
-  },
+  }
 
-  didInsertElement() {
-    this._super(...arguments);
-
+  @action
+  createEditor() {
     this.editor = CodeMirror.fromTextArea(document.getElementById("json-editor"), {
       theme: this.settings.getTheme(),
       viewportMargin: Infinity,
@@ -97,18 +99,17 @@ export default Component.extend({
       "Ctrl-E": snippets,
       "Tab": replaceTabsWithSpaces
     });
-  },
+  }
 
-  willDestroyElement() {
-    this._super(...arguments);
-
+  @action
+  destroyEditor() {
     // remove the editor and restore the original textarea.
     this.editor.toTextArea();
-    delete this.editor;
+    this.editor = null;
 
     this.settings.setOnFontSizeChange(null);
     this.settings.setOnThemeChange(null);
-  },
+  }
 
   snippets() {
     const editor = this.get("editor");
@@ -131,12 +132,12 @@ export default Component.extend({
           to: CodeMirror.Pos(line, end)
         }
       }, { completeSingle: false })
-  },
+  }
 
   replaceTabsWithSpaces(codeMirror) {
     let spaces = Array(codeMirror.getOption("indentUnit") + 1).join(" ");
     codeMirror.replaceSelection(spaces);
-  },
+  }
 
   setupCodeMirrorEventHandler(event, target, method) {
     const callback = bind(target, method);
@@ -146,43 +147,43 @@ export default Component.extend({
     this.one('willDestroyElement', this, function() {
       this.editor.off(event, callback);
     });
-  },
+  }
 
   scheduleValueUpdatedAction(codeMirror) {
     once(this, this.updateValue, codeMirror.getValue());
-  },
+  }
 
   setError(error) {
-    this.set("error", error);
+    this.error = error;
 
-    const onErorr = this.get("onError");
+    const onErorr = this.onError;
     if (onErorr) {
       this.onError(error);
     }
-  },
+  }
 
   setValue(value) {
     try {
-      this.set("value", value);
+      this.value = value;
       this.setError(null);
       ModelVisualizer.validate(JSON.parse(value));
     } catch (error) {
       this.setError(error);
     }
-  },
+  }
 
   updateValue(newValue) {
     this.onUpdate(newValue);
     this.setValue(newValue);
-  },
+  }
 
   setOption(key, value) {
     this.editor.setOption(key, value);
-  },
+  }
 
   setTheme(value) {
     this.setOption("theme", value);
-  },
+  }
 
   setFontSize(value) {
     const editor = this.get("editor");
@@ -190,4 +191,4 @@ export default Component.extend({
     editor.getWrapperElement().style["font-size"] = value;
     editor.refresh();
   }
-});
+}

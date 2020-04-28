@@ -1,4 +1,4 @@
-<a href="javascript:void(0)" class="side-bar-hide-button no-underline text-4xl float-right mr-8 text-grey-darkest hover:text-grey" {{action "hideSideBar"}}>
+<a href="javascript:void(0)" class="side-bar-hide-button no-underline text-4xl float-right mr-8 text-grey-darkest hover:text-grey" {{on "click" this.hideSideBar}}>
   <CloseIcon @size="1.5rem" @color="white" />
 </a>
 
@@ -13,9 +13,9 @@
   <div class="my-6">
     <div class="py-2 text-grey-darker">
       <h3 class="my-3 text-grey">Save Models</h3>
-      <Input @id="file-name" @class="d-inline py-1 px-2 mr-2" @type="text" @value={{this.fileName}} @tabindex="1" />
+      <Input @id="file-name" @class="d-inline py-1 px-2 mr-2" @type="text" @value={{this.fileName}} @tabindex="0" />
 
-      <button class="bg-green hover:bg-green-dark text-white font-bold py-1 px-4 my-2 rounded" {{action "saveModel"}} tabindex="2">Save</button>
+      <button type="button" class="bg-green hover:bg-green-dark text-white font-bold py-1 px-4 my-2 rounded" {{on "click" this.saveModel}} tabindex="0">Save</button>
     </div>
   </div>
 
@@ -26,12 +26,12 @@
       <div class="my-2">
         <div class="my-2">
           <label>Font Size:</label>
-          <Select-Dropdown @id="font-size-select" @class="inline-block ml-1" @onSelect={{action "selectFontSize"}} @items={{this.fontSizes}} @selectedItem={{this.fontSize}} />
+          <SelectDropdown @id="font-size-select" @class="inline-block ml-1" @onSelectCallback={{this.selectFontSize}} @items={{this.fontSizes}} @selectedItem={{this.fontSize}} />
         </div>
 
         <div class="my-2">
           <label>Theme:</label>
-          <Select-Dropdown @id="theme-select" @class="inline-block ml-1" @onSelect={{action "selectTheme"}} @items={{this.themes}} @selectedItem={{this.theme}} />
+          <SelectDropdown @id="theme-select" @class="inline-block ml-1" @onSelectCallback={{this.selectTheme}} @items={{this.themes}} @selectedItem={{this.theme}} />
         </div>
       </div>
 
@@ -51,27 +51,27 @@
 
       <div class="my-2">
         <label>Graph Direction:</label>
-        <Select-Dropdown @id="graph-direction-select" @class="inline-block ml-1" @onSelect={{action "selectGraphDirection"}} @items={{this.graphDirections}} @selectedItem={{this.graphDirection}} />
+        <SelectDropdown id="graph-direction-select" class="inline-block ml-1" @onSelectCallback={{this.selectGraphDirection}} @items={{this.graphDirections}} @selectedItem={{this.graphDirection}} />
       </div>
 
       <div class="my-3">
         <div class="range-slider-container">
           <p class="mb-2">Vertex Separation: <span class="text-grey">{{this.vertexSeparation}}</span></p>
-          <Input @type="range" @min={{this.minVertexSeparation}} @max={{this.maxVertexSeparation}} @value={{this.vertexSeparation}} @steps="1" @class="range-slider" @input={{action "updteVertexSeparation" this.vertexSeparation}} />
+          <Input @type="range" @min={{this.minVertexSeparation}} @max={{this.maxVertexSeparation}} @value={{this.vertexSeparation}} @steps="1" @class="range-slider" @input={{this.updteVertexSeparation}} />
         </div>
       </div>
 
       <div class="my-3">
         <div class="range-slider-container">
           <p class="mb-2">Edge Separation: <span class="text-grey">{{this.edgeSeparation}}</span></p>
-          <Input @type="range" @min={{this.minEdgeSeparation}} @max={{this.maxEdgeSeparation}} @value={{this.edgeSeparation}} @steps="1" @class="range-slider" @input={{action "updteEdgeSeparation" this.edgeSeparation}} />
+          <Input @type="range" @min={{this.minEdgeSeparation}} @max={{this.maxEdgeSeparation}} @value={{this.edgeSeparation}} @steps="1" @class="range-slider" @input={{this.updteEdgeSeparation}} />
         </div>
       </div>
 
       <div class="my-3">
         <div class="range-slider-container">
           <p class="mb-2">Rank Separation: <span class="text-grey">{{this.rankSeparation}}</span></p>
-          <Input @type="range" @min={{this.minRankSeparation}} @max={{this.maxRankSeparation}}  @value={{this.rankSeparation}} @steps="1" @class="range-slider" @input={{action "updteRankSeparation" this.rankSeparation}} />
+          <Input @type="range" @min={{this.minRankSeparation}} @max={{this.maxRankSeparation}}  @value={{this.rankSeparation}} @steps="1" @class="range-slider" @input={{this.updteRankSeparation}} />
         </div>
       </div>
     </div>

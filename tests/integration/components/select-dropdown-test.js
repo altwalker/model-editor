@@ -41,7 +41,7 @@ module('Integration | Component | select-dropdown', function(hooks) {
       assert.equal(value, newSelectedItem, `Should set the selected value to ${newSelectedItem} actual value ${value}`)
     });
 
-    await render(hbs`<SelectDropdown @items={{this.items}} @selectedItem={{this.selected}} @onSelect={{this.onSelect}} />`);
+    await render(hbs`<SelectDropdown @items={{this.items}} @selectedItem={{this.selected}} @onSelectCallback={{this.onSelect}} />`);
 
     await fillIn('select', newSelectedItem);
   });
@@ -53,7 +53,7 @@ module('Integration | Component | select-dropdown', function(hooks) {
       callCount += 1;
     });
 
-    await render(hbs`<SelectDropdown @items={{this.items}} @selectedItem={{this.selected}} @onSelect={{this.onSelect}} />`);
+    await render(hbs`<SelectDropdown @items={{this.items}} @selectedItem={{this.selected}} @onSelectCallback={{this.onSelect}} />`);
 
     const items = this.get("items");
     for (let i = 0; i < items.length; i++) {
