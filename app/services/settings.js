@@ -1,5 +1,6 @@
 import Service from '@ember/service';
 import { A } from '@ember/array';
+import { tracked } from '@glimmer/tracking';
 import { once } from '@ember/runloop';
 
 const graphDirectionsMap = {
@@ -9,8 +10,8 @@ const graphDirectionsMap = {
   "Right-Left": "RL"
 }
 
-export default Service.extend({
-  themes: A([
+export default class SettingsService extends Service {
+  themes = A([
     "default",
     "3024-night",
     "abcdef",
@@ -68,52 +69,52 @@ export default Service.extend({
     "yeti",
     "yonce",
     "zenburn"
-  ]),
-  fontSizes: A([".75rem", ".875rem", "1rem", "1.125rem"]),
+  ]);
+  fontSizes = A([".75rem", ".875rem", "1rem", "1.125rem"]);
 
-  graphDirectionsMap: graphDirectionsMap,
-  graphDirections: A(Object.keys(graphDirectionsMap)),
+  graphDirectionsMap = graphDirectionsMap;
+  graphDirections = A(Object.keys(graphDirectionsMap));
 
-  defaultTheme: "default",
-  defaultFontSize: "1rem",
+  defaultTheme = "default";
+  defaultFontSize = "1rem";
 
-  defaultGraphDirection: "Top-Bottom",
-  defaultVertexSeparation: 50,
-  defaultEdgeSeparation: 50,
-  defaultRankSeparation: 50,
+  defaultGraphDirection = "Top-Bottom";
+  defaultVertexSeparation = 50;
+  defaultEdgeSeparation = 50;
+  defaultRankSeparation=  50;
 
-  minVertexSeparation: 1,
-  minEdgeSeparation: 1,
-  minRankSeparation: 1,
+  minVertexSeparation = 1;
+  minEdgeSeparation = 1;
+  minRankSeparation = 1;
 
-  maxVertexSeparation: 500,
-  maxEdgeSeparation: 500,
-  maxRankSeparation: 500,
+  maxVertexSeparation = 500;
+  maxEdgeSeparation = 500;
+  maxRankSeparation = 500;
 
-  theme: null,
-  fontSize: null,
+  @tracked theme = null;
+  @tracked fontSize = null;
 
-  graphDirection: null,
-  vertexSeparation: null,
-  edgeSeparation: null,
-  rankSeparation: null,
+  @tracked graphDirection = null;
+  @tracked vertexSeparation = null;
+  @tracked edgeSeparation = null;
+  @tracked rankSeparation = null;
 
-  onThemeChange: null,
-  onFontSizeChange: null,
+  onThemeChange = null;
+  onFontSizeChange = null;
 
-  onGraphLayoutOptionsChange: null,
+  onGraphLayoutOptionsChange = null;
 
-  init() {
-    this._super(...arguments);
+  constructor() {
+    super(...arguments);
 
-    this.set("theme", localStorage.getItem("editorTheme") || this.get("defaultTheme"));
-    this.set("fontSize", localStorage.getItem("editorFontSize") || this.get("defaultFontSize"));
+    this.theme = localStorage.getItem("editorTheme") || this.defaultTheme;
+    this.fontSize = localStorage.getItem("editorFontSize") || this.defaultFontSize;
 
-    this.set("graphDirection", localStorage.getItem("graphDirection") || this.get("defaultGraphDirection"));
-    this.set("vertexSeparation", localStorage.getItem("vertexSeparation") || this.get("defaultVertexSeparation"));
-    this.set("edgeSeparation", localStorage.getItem("edgeSeparation") || this.get("defaultEdgeSeparation"));
-    this.set("rankSeparation", localStorage.getItem("rankSeparation") || this.get("defaultRankSeparation"));
-  },
+    this.graphDirection = localStorage.getItem("graphDirection") || this.defaultGraphDirection;
+    this.vertexSeparation = localStorage.getItem("vertexSeparation") || this.defaultVertexSeparation;
+    this.edgeSeparation = localStorage.getItem("edgeSeparation") || this.defaultEdgeSeparation;
+    this.rankSeparation = localStorage.getItem("rankSeparation") || this.defaultRankSeparation;
+  }
 
   callHandler(handlerName) {
     const handler = this.get(handlerName);
@@ -121,90 +122,90 @@ export default Service.extend({
     if (handler) {
       once(this, handler, ...Array.prototype.slice.call(arguments, 1));
     }
-  },
+  }
 
   setOnThemeChange(handler) {
-    this.set("onThemeChange", handler)
-  },
+    this.onThemeChange = handler;
+  }
 
   setOnFontSizeChange(handler) {
-    this.set("onFontSizeChange", handler)
-  },
+    this.onFontSizeChange = handler;
+  }
 
   setOnGraphLayoutOptionsChange(handler) {
-    this.set("onGraphLayoutOptionsChange", handler)
-  },
+    this.onGraphLayoutOptionsChange = handler;
+  }
 
   setTheme(theme) {
     this.callHandler("onThemeChange", theme);
 
-    this.set("theme", theme);
+    this.theme = theme;
     localStorage.setItem("editorTheme", theme);
-  },
+  }
 
   setFontSize(size) {
     this.callHandler("onFontSizeChange", size);
 
-    this.set("fontSize", size);
+    this.fontSize = size;
     localStorage.setItem("editorFontSize", size);
-  },
+  }
 
   convertGraphDirection(direction) {
-    const graphDirectionsMap = this.get("graphDirectionsMap");
-    return graphDirectionsMap[direction] || graphDirectionsMap[this.get("defaultGraphDirection")];
-  },
+    const graphDirectionsMap = this.graphDirectionsMap;
+    return graphDirectionsMap[direction] || graphDirectionsMap[this.defaultGraphDirection];
+  }
 
   setGraphDirection(direction) {
-    this.set("graphDirection", direction);
+    this.graphDirection = direction;
     localStorage.setItem("graphDirection", direction);
 
     this.callHandler("onGraphLayoutOptionsChange", this.getGraphLayoutOptions());
-  },
+  }
 
   setVertexSeparation(separation) {
-    this.set("vertexSeparation", separation);
+    this.vertexSeparation = separation;
     localStorage.setItem("vertexSeparation", separation);
 
     this.callHandler("onGraphLayoutOptionsChange", this.getGraphLayoutOptions());
-  },
+  }
 
   setEdgeSeparation(separation) {
-    this.set("edgeSeparation", separation);
+    this.edgeSeparation = separation;
     localStorage.setItem("edgeSeparation", separation);
 
     this.callHandler("onGraphLayoutOptionsChange", this.getGraphLayoutOptions());
-  },
+  }
 
   setRankSeparation(separation) {
-    this.set("rankSeparation", separation);
+    this.rankSeparation = separation;
     localStorage.setItem("rankSeparation", separation);
 
     this.callHandler("onGraphLayoutOptionsChange", this.getGraphLayoutOptions());
-  },
+  }
 
   getTheme() {
-    return this.get("theme") || this.get("defaultTheme");
-  },
+    return this.theme || this.defaultTheme;
+  }
 
   getFontSize() {
-    return this.get("fontSize") || this.get("defaultFontSize");
-  },
+    return this.fontSize || this.defaultFontSize;
+  }
 
   getGraphDirection() {
-    return this.get("graphDirection") || this.get("defaultGraphDirection");
-  },
+    return this.graphDirection || this.defaultGraphDirection;
+  }
 
   getVertexSeparation() {
-    return this.get("vertexSeparation") || this.get("defaultVertexSeparation");
-  },
+    return this.vertexSeparation || this.defaultVertexSeparation;
+  }
 
   getEdgeSeparation() {
-    return this.get("edgeSeparation") || this.get("defaultEdgeSeparation");
-  },
+    return this.edgeSeparation || this.defaultEdgeSeparation;
+  }
 
   getRankSeparation() {
-    return this.get("rankSeparation") || this.get("defaultRankSeparation");
-  },
+    return this.rankSeparation || this.defaultRankSeparation;
+  }
 
   getGraphLayoutOptions() {
     return {
@@ -214,4 +215,4 @@ export default Service.extend({
       "rankSeparation": this.getRankSeparation()
     }
   }
-});
+}

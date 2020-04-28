@@ -1,27 +1,30 @@
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
-export default Controller.extend({
-  queryParams: ['editMode'],
-  editMode: false,
-  error: null,
+export default class VisualizerController extends Controller {
+  queryParams = ['editMode'];
 
-  title: computed("editMode", function() {
+  @tracked error = null;
+  @tracked editMode = false;
+
+  get title() {
     return this.editMode ? "Graph Editor" : "Graph Visualizer";
-  }),
+  }
 
-  actions: {
-    toggleEditMode() {
-      if (!this.get("error")) {
-        this.toggleProperty("editMode");
-      }
-    },
-
-    setError(error) {
-      this.set("error", error)
-      if (error) {
-        this.set("editMode", false);
-      }
+  @action
+  toggleEditMode() {
+    if (!this.error) {
+      this.toggleProperty("editMode");
     }
   }
-});
+
+  @action
+  setError(error) {
+    this.error = error;
+
+    if (error) {
+      this.editMode = false;
+    }
+  }
+}

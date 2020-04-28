@@ -1,11 +1,12 @@
 import Controller from '@ember/controller';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
-export default Controller.extend({
-  error: null,
+export default class EditorVisualizerController extends Controller {
+  @tracked error = null;
 
-  actions: {
-    setError(error) {
-      this.set("error", error)
-    }
+  @action
+  setError(error) {
+    this.error = error;
   }
-});
+}

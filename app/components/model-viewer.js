@@ -1,28 +1,25 @@
 import Component from '@ember/component';
+import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { bind } from '@ember/runloop';
 
-export default Component.extend({
-  modelStorage : service("model-storage"),
-  settings: service("settings"),
+export default class ModelViewerComponent extends Component {
+  @service modelStorage;
+  @service settings;
 
-  visualizer: null,
+  visualizer = null;
 
-  onError: null,
-  ignoreErrors: false,
+  onError = null;
+  ignoreErrors = false;
 
-  init() {
-    this._super(...arguments);
-  },
-
-  didInsertElement() {
-    this._super(...arguments);
-
-    const visualizer = new ModelVisualizer({"container": "visualizer"});
-    this.set("visualizer", visualizer);
+  @action
+  createModelViewer() {
+    this.visualizer = new ModelVisualizer({
+      "container": "visualizer",
+      "editMode": this.editMode
+    });
 
     this.setModels(this.modelStorage.loadModel());
-    this.updateEditMode();
 
     const refresh = bind(this, this.get("refresh"));
     window.addEventListener("resize", refresh);
@@ -31,23 +28,34 @@ export default Component.extend({
     this.settings.setOnGraphLayoutOptionsChange(setGraphLayoutOptions);
 
     this.setGraphLayoutOptions(this.settings.getGraphLayoutOptions());
-  },
+  }
 
-  didUpdateAttrs() {
-    this._super(...arguments);
-    this.updateEditMode();
-  },
+  @action
+  updateEditMode() {
+    this.visualizer.setEditMode(this.editMode);
 
-  willDestroyElement() {
-    const refresh =  bind(this, this.get("refresh"));
+    if (this.editMode) {
+      this.modelStorage.setOnModelChange(null);
+
+      const handler = bind(this.modelStorage, this.modelStorage.get("saveModel"));
+      this.visualizer.setOnModelsChange(handler);
+    } else {
+      const setModels = bind(this, this.get("setModels"));
+      this.modelStorage.setOnModelChange(setModels);
+
+      this.visualizer.setOnModelsChange(null);
+    }
+  }
+
+  @action
+  destroyModelViewer() {
+    const refresh = bind(this, this.get("refresh"));
     window.removeEventListener("resize", refresh)
 
     this.modelStorage.setOnModelChange(null);
 
     this.settings.setOnGraphLayoutOptionsChange(null);
-
-    this._super(...arguments);
-  },
+  }
 
   setModels(models) {
     const visualizer = this.get("visualizer");
@@ -58,24 +66,7 @@ export default Component.extend({
     } catch (error) {
       this.setError(error);
     }
-  },
-
-  updateEditMode() {
-    const visualizer = this.get("visualizer");
-    visualizer.setEditMode(this.editMode);
-
-    if (this.editMode) {
-      this.modelStorage.setOnModelChange(null);
-
-      const handler = bind(this.modelStorage, this.modelStorage.get("saveModel"));
-      visualizer.setOnModelsChange(handler);
-    } else {
-      const setModels = bind(this, this.get("setModels"));
-      this.modelStorage.setOnModelChange(setModels);
-
-      visualizer.setOnModelsChange(null);
-    }
-  },
+  }
 
   setError(error) {
     this.set("error", error);
@@ -84,7 +75,7 @@ export default Component.extend({
     if (handler) {
       handler(error);
     }
-  },
+  }
 
   refresh() {
     const visualizer = this.get("visualizer");
@@ -92,7 +83,7 @@ export default Component.extend({
     if (visualizer) {
       visualizer.repaint();
     }
-  },
+  }
 
   setGraphLayoutOptions(options) {
     const visualizer = this.get("visualizer");
@@ -104,5 +95,5 @@ export default Component.extend({
     }
 
     visualizer.setGraphLayoutOptions(layoutOptions);
-  },
-});
+  }
+}

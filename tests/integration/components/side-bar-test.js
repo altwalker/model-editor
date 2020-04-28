@@ -7,7 +7,9 @@ module('Integration | Component | side-bar', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    await render(hbs`<SideBar />`);
+    this.set("hideSideBar", function() {})
+
+    await render(hbs`<SideBar @hideSideBarCallback={{this.hideSideBar}} />`);
 
     assert.ok(this.element.textContent.trim())
   });

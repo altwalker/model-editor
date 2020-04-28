@@ -1,66 +1,109 @@
 import Component from '@ember/component';
-import { oneWay } from '@ember/object/computed';
+import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 
-export default Component.extend({
-  settings: service('settings'),
-  modelStorage: service('model-storage'),
+export default class SideBarComponent extends Component {
+  @service modelStorage;
+  @service settings;
 
-  fontSizes: oneWay('settings.fontSizes'),
-  themes: oneWay('settings.themes'),
+  @tracked fileName = "models";
 
-  graphDirections: oneWay('settings.graphDirections'),
-
-  fontSize: oneWay('settings.fontSize'),
-  theme: oneWay('settings.theme'),
-
-  graphDirection: oneWay('settings.graphDirection'),
-  vertexSeparation: oneWay('settings.vertexSeparation'),
-  edgeSeparation: oneWay('settings.edgeSeparation'),
-  rankSeparation: oneWay('settings.rankSeparation'),
-
-  minVertexSeparation: oneWay('settings.minVertexSeparation'),
-  minEdgeSeparation: oneWay('settings.minEdgeSeparation'),
-  minRankSeparation: oneWay('settings.minRankSeparation'),
-
-  maxVertexSeparation: oneWay('settings.maxVertexSeparation'),
-  maxEdgeSeparation: oneWay('settings.maxEdgeSeparation'),
-  maxRankSeparation: oneWay('settings.maxRankSeparation'),
-
-  fileName: "models",
-
-  actions: {
-    hideSideBar() {
-      this.hideSideBar();
-    },
-
-    selectTheme(selected) {
-      this.settings.setTheme(selected);
-    },
-
-    selectFontSize(selected) {
-      this.settings.setFontSize(selected);
-    },
-
-    selectGraphDirection(selected) {
-      this.settings.setGraphDirection(selected);
-    },
-
-    updteVertexSeparation(value) {
-      this.settings.setVertexSeparation(value);
-    },
-
-    updteEdgeSeparation(value) {
-      this.settings.setEdgeSeparation(value);
-    },
-
-    updteRankSeparation(value) {
-      this.settings.setRankSeparation(value);
-    },
-
-    saveModel() {
-      var blob = new Blob([this.modelStorage.loadModel()], {type: "text/plain;charset=utf-8"});
-      saveAs(blob, this.fileName + ".json");
-    }
+  get fontSizes() {
+    return this.settings.fontSizes;
   }
-});
+
+  get themes() {
+    return this.settings.themes;
+  }
+
+  get graphDirections() {
+    return this.settings.graphDirections;
+  }
+
+  get fontSize() {
+    return this.settings.fontSize;
+  }
+
+  get theme() {
+    return this.settings.theme;
+  }
+
+  get graphDirection() {
+    return this.settings.graphDirection;
+  }
+
+  get vertexSeparation() {
+    return this.settings.vertexSeparation;
+  }
+
+  set vertexSeparation(value) {
+    this.settings.setVertexSeparation(value);
+  }
+
+  get edgeSeparation() {
+    return this.settings.edgeSeparation;
+  }
+
+  set edgeSeparation(value) {
+    this.settings.setEdgeSeparation(value);
+  }
+
+  get rankSeparation() {
+    return this.settings.rankSeparation;
+  }
+
+  set rankSeparation(value) {
+    this.settings.setRankSeparation(value);
+  }
+
+  get minVertexSeparation() {
+    return this.settings.minVertexSeparation;
+  }
+
+  get minEdgeSeparation() {
+    return this.settings.minEdgeSeparation;
+  }
+
+  get minRankSeparation() {
+    return this.settings.minRankSeparation;
+  }
+
+  get maxVertexSeparation() {
+    return this.settings.maxVertexSeparation;
+  }
+
+  get maxEdgeSeparation() {
+    return this.settings.maxEdgeSeparation;
+  }
+
+  get maxRankSeparation() {
+    return this.settings.maxRankSeparation;
+  }
+
+  @action
+  hideSideBar() {
+    this.hideSideBarCallback();
+  }
+
+  @action
+  selectTheme(selected) {
+    this.settings.setTheme(selected);
+  }
+
+  @action
+  selectFontSize(selected) {
+    this.settings.setFontSize(selected);
+  }
+
+  @action
+  selectGraphDirection(selected) {
+    this.settings.setGraphDirection(selected);
+  }
+
+  @action
+  saveModel() {
+    var blob = new Blob([this.modelStorage.loadModel()], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, this.fileName + ".json");
+  }
+}

@@ -1,15 +1,17 @@
 import Controller from '@ember/controller';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
-export default Controller.extend({
-  isSideBarShown: false,
+export default class ApplicationController extends Controller {
+  @tracked isSideBarShown = false;
 
-  actions: {
-    showSideBar() {
-      this.set("isSideBarShown", true);
-    },
-
-    hideSideBar() {
-      this.set("isSideBarShown", false);
-    }
+  @action
+  showSideBar() {
+    this.isSideBarShown = true;
   }
-});
+
+  @action
+  hideSideBar() {
+    this.isSideBarShown = false;
+  }
+}

@@ -39,13 +39,13 @@ const defaultModel = `{
     ]
 }`
 
-export default Service.extend({
-  defaultModel: defaultModel,
-  onModelChange: null,
+export default class ModelStorageService extends Service {
+  defaultModel = defaultModel;
+  onModelChange = null;
 
   loadModel() {
     return localStorage.getItem("model") || this.defaultModel;
-  },
+  }
 
   saveModel(model) {
     var modelString = null;
@@ -58,13 +58,13 @@ export default Service.extend({
 
     localStorage.setItem("model", modelString.trim());
 
-    const handler = this.get("onModelChange");
+    const handler = this.onModelChange;
     if (handler) {
       handler(model);
     }
-  },
+  }
 
   setOnModelChange(handler) {
-    this.set("onModelChange", handler);
-  },
-});
+    this.onModelChange = handler;
+  }
+}

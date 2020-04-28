@@ -1,16 +1,25 @@
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  onSelect: null,
+export default class SelectDropdownComponent extends Component {
+  @tracked selectedItem = null;
+  onSelect = null;
 
-  actions: {
-    selectItem(value) {
-      this.set("selectedItem", value);
-      const onSelect = this.get("onSelect");
+  constructor() {
+    super(...arguments);
 
-      if (onSelect) {
-        onSelect(value);
-      }
+    this.selectedItem = this.args.selectedItem;
+    this.onSelect = this.args.onSelectCallback;
+  }
+
+  @action
+  selectItem(event) {
+    this.selectedItem = event.target.value;
+    const onSelect = this.onSelect;
+
+    if (onSelect) {
+      onSelect(this.selectedItem);
     }
   }
-});
+}
