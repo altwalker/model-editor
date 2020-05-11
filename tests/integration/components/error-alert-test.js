@@ -12,19 +12,16 @@ module('Integration | Component | error-alert', function(hooks) {
 
   test('it renders', async function(assert) {
     await render(hbs`<ErrorAlert @error={{this.error}} />`);
-
-    assert.equal(this.element.querySelector('.error-alert').getAttribute('role'), 'alert')
+    assert.equal(this.element.querySelector('[data-test-error]').getAttribute('role'), 'alert')
   });
 
-  test('it renders the error name', async function(assert) {
+  test('it should renders the error name', async function(assert) {
     await render(hbs`<ErrorAlert @error={{this.error}} />`);
-
-    assert.equal(this.element.querySelector('.error-alert > strong').textContent.trim(), `${this.get("error").name}:`);
+    assert.equal(this.element.querySelector('[data-test-error-name]').textContent.trim(), `${this.error.name}:`);
   });
 
-  test('it renders the error message', async function(assert) {
+  test('it should renders the error message', async function(assert) {
     await render(hbs`<ErrorAlert @error={{this.error}} />`);
-
-    assert.equal(this.element.querySelector('.error-alert > span').textContent.trim(), this.get("error").message);
+    assert.equal(this.element.querySelector('[data-test-error-message]').textContent.trim(), this.error.message);
   });
 });

@@ -41,13 +41,14 @@ const defaultModel = `{
 
 export default class ModelStorageService extends Service {
   defaultModel = defaultModel;
-  onModelChange = null;
+
+  modelChangeCalbacks = {};
 
   loadModel() {
     return localStorage.getItem("model") || this.defaultModel;
   }
 
-  saveModel(model) {
+  saveModel(callerKey, model) {
     var modelString = null;
 
     if (typeof model == "object") {
@@ -58,13 +59,21 @@ export default class ModelStorageService extends Service {
 
     localStorage.setItem("model", modelString.trim());
 
-    const handler = this.onModelChange;
-    if (handler) {
-      handler(model);
+    const handlers = this.modelChangeCalbacks;
+    if (handlers) {
+      for (let [key, handler] of Object.entries(handlers)) {
+        if (callerKey !== key) {
+          handler(model)
+        }
+      }
     }
   }
 
-  setOnModelChange(handler) {
-    this.onModelChange = handler;
+  setOnModelChange(key, handler) {
+    this.modelChangeCalbacks[key] = handler;
+  }
+
+  removeOnModelChange(key) {
+    delete this.modelChangeCalbacks[key];
   }
 }

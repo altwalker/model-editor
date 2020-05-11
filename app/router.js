@@ -7,7 +7,8 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function() {
-  this.route('editor');
-  this.route('visualizer');
-  this.route('editor-visualizer');
+  this.route('json-editor');
+  this.route('visual-editor');
+  this.route('viewer');
+  this.route('not-found', { path: '/*path' });
 });

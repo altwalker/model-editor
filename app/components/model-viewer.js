@@ -9,15 +9,10 @@ export default class ModelViewerComponent extends Component {
 
   visualizer = null;
 
-  onError = null;
-  ignoreErrors = false;
-
   @action
   createModelViewer() {
-    this.visualizer = new ModelVisualizer({
-      "container": "visualizer",
-      "editMode": this.editMode
-    });
+    this.visualizer = new ModelVisualizer({"container": "visualizer"});
+    this.updateEditMode();
 
     this.setModels(this.modelStorage.loadModel());
 
@@ -34,15 +29,13 @@ export default class ModelViewerComponent extends Component {
   updateEditMode() {
     this.visualizer.setEditMode(this.editMode);
 
-    if (this.editMode) {
-      this.modelStorage.setOnModelChange(null);
+    const setModels = bind(this, this.get("setModels"));
+    this.modelStorage.setOnModelChange("visualizer", setModels);
 
-      const handler = bind(this.modelStorage, this.modelStorage.get("saveModel"));
+    if (this.editMode) {
+      const handler = bind(this, this.saveModels);
       this.visualizer.setOnModelsChange(handler);
     } else {
-      const setModels = bind(this, this.get("setModels"));
-      this.modelStorage.setOnModelChange(setModels);
-
       this.visualizer.setOnModelsChange(null);
     }
   }
@@ -52,8 +45,7 @@ export default class ModelViewerComponent extends Component {
     const refresh = bind(this, this.get("refresh"));
     window.removeEventListener("resize", refresh)
 
-    this.modelStorage.setOnModelChange(null);
-
+    this.modelStorage.removeOnModelChange("visualizer");
     this.settings.setOnGraphLayoutOptionsChange(null);
   }
 
@@ -68,13 +60,12 @@ export default class ModelViewerComponent extends Component {
     }
   }
 
+  saveModels(models) {
+    this.modelStorage.saveModel("visualizer", models)
+  }
+
   setError(error) {
     this.set("error", error);
-
-    const handler = this.get("onError");
-    if (handler) {
-      handler(error);
-    }
   }
 
   refresh() {

@@ -28,7 +28,7 @@ module('Unit | Service | model-storage', function(hooks) {
     let service = this.owner.lookup('service:model-storage');
 
     const model = "{}";
-    service.saveModel(model)
+    service.saveModel("test", model)
 
     assert.equal(localStorage.getItem("model"), model);
   });

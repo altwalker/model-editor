@@ -13,62 +13,37 @@ const graphDirectionsMap = {
 export default class SettingsService extends Service {
   themes = A([
     "default",
-    "3024-night",
-    "abcdef",
-    "ambiance",
     "base16-dark",
     "base16-light",
     "bespin",
     "blackboard",
-    "cobalt",
-    "colorforth",
-    "darcula",
     "dracula",
     "duotone-dark",
     "duotone-light",
     "eclipse",
     "elegant",
-    "erlang-dark",
-    "gruvbox-dark",
     "hopscotch",
     "icecoder",
     "idea",
     "isotope",
-    "lesser-dark",
-    "liquibyte",
     "lucario",
     "material",
-    "mbo",
-    "mdn-like",
-    "midnight",
     "monokai",
     "moxer",
-    "neat",
     "neo",
-    "night",
     "nord",
     "oceanic-next",
     "panda-syntax",
-    "paraiso-dark",
-    "paraiso-light",
     "pastel-on-dark",
     "railscasts",
-    "rubyblue",
     "seti",
-    "shadowfox",
     "solarized dark",
     "solarized light",
-    "the-matrix",
-    "tomorrow-night-bright",
-    "tomorrow-night-eighties",
     "ttcn",
-    "twilight",
-    "vibrant-ink",
     "xq-dark",
     "xq-light",
     "yeti",
     "yonce",
-    "zenburn"
   ]);
   fontSizes = A([".75rem", ".875rem", "1rem", "1.125rem"]);
 
@@ -214,5 +189,17 @@ export default class SettingsService extends Service {
       "edgeSeparation": this.getEdgeSeparation(),
       "rankSeparation": this.getRankSeparation()
     }
+  }
+
+  resetEditorSettings() {
+    this.setTheme(this.defaultTheme);
+    this.setFontSize(this.defaultFontSize);
+  }
+
+  resetVisualizerSettings() {
+    this.setGraphDirection(this.defaultGraphDirection);
+    this.setVertexSeparation(this.defaultVertexSeparation);
+    this.setEdgeSeparation(this.defaultEdgeSeparation);
+    this.setRankSeparation(this.defaultRankSeparation);
   }
 }

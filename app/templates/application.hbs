@@ -1,11 +1,27 @@
-<SideBar id="side-bar" class="side-bar h-full py-4 {{if this.isSideBarShown "side-bar-shown" "side-bar-hidden"}}" @hideSideBarCallback={{this.hideSideBar}} />
+<div>
+  <HeaderBar
+    @helpCallback={{this.showHelpPopUp}}
+    @exportImportCallback={{this.showExportImportPopUp}}
+    @settingsCallback={{this.showSettingsPopUp}}
 
-<div id="overlay" class="overlay animate-opacity-in {{if this.isSideBarShown "overlay-shown" "overlay-hidden"}}" {{on "click" this.hideSideBar}} role="button"></div>
+    @currentPath={{this.router.currentRouteName}}
+  />
 
-<div id="main" class="h-screen w-screen max-w-screen px-4 pt-4 bg-grey-lightest">
-  <HeaderBar class="header-bar" @showSideBarCallback={{this.showSideBar}} />
-
-  <div class="h-v-90">
+  <main id="main">
     {{outlet}}
-  </div>
+  </main>
+
+  <FooterBar />
 </div>
+
+{{#if this.displayHelpPopUp}}
+  <PopUps::Help @overlayCallback={{this.hideHelpPopUp}} />
+{{/if}}
+
+{{#if this.displayExportImportPopUp}}
+  <PopUps::ExportImport @overlayCallback={{this.hideExportImportPopUp}} />
+{{/if}}
+
+{{#if this.displaySettingsPopUp}}
+  <PopUps::Settings @overlayCallback={{this.hideSettingsPopUp}} />
+{{/if}}

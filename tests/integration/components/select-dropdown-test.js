@@ -42,7 +42,6 @@ module('Integration | Component | select-dropdown', function(hooks) {
     });
 
     await render(hbs`<SelectDropdown @items={{this.items}} @selectedItem={{this.selected}} @onSelectCallback={{this.onSelect}} />`);
-
     await fillIn('select', newSelectedItem);
   });
 

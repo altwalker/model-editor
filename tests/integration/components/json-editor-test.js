@@ -7,11 +7,17 @@ import Service from '@ember/service';
 const modelStorageStub = Service.extend({
   model: "",
 
+  setOnModelChange() {
+  },
+
+  removeOnModelChange() {
+  },
+
   loadModel() {
     return this.get("model");
   },
 
-  saveModel(model) {
+  saveModel(caller, model) {
     this.set("model", model);
   }
 });
@@ -25,7 +31,6 @@ module('Integration | Component | json-editor', function(hooks) {
 
   test('it renders', async function(assert) {
     await render(hbs`<JsonEditor />`);
-
     assert.ok(this.element.querySelector(".CodeMirror"));
   });
 

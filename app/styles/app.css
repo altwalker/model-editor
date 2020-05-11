@@ -1,17 +1,11 @@
-@import 'tailwind.css';
 
-body {
-    min-height: 100vh;
-    height: 100%;
-}
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-/* CodeMirror */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-.CodeMirror {
-    height: 100%;
-}
-
-.CodeMirror-scroll {
-    height: 100% !important;
-    overflow: visible;
-}
+@import "typography";
+@import "general";
+@import "editor";
+@import "visualizer";

@@ -5,24 +5,24 @@ import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 
 const modelSnippet = `{
-  "name": "",
-  "generator": "random(vertex_coverage(100) && edge_coverage(100))",
-  "vertices": [
-  ],
-  "edges": [
-  ]
+    "name": "",
+    "generator": "random(vertex_coverage(100) && edge_coverage(100))",
+    "vertices": [
+    ],
+    "edges": [
+    ]
 }`
 
 const vertexSnippet = `{
-  "id": "",
-  "name": ""
+    "id": "",
+    "name": ""
 }`
 
 const edgeSnippet = `{
-  "id": "",
-  "name": "",
-  "sourceVertexId": "",
-  "targetVertexId": ""
+    "id": "",
+    "name": "",
+    "sourceVertexId": "",
+    "targetVertexId": ""
 }`
 
 const snippets = [
@@ -49,10 +49,8 @@ export default class JsonEditorComponent extends Component {
   @service modelStorage;
   @service settings;
 
-  @tracked error = null;
   @tracked value = "";
 
-  onError = null;
   onUpdate = null;
 
   constructor() {
@@ -72,6 +70,7 @@ export default class JsonEditorComponent extends Component {
       indentWithTabs: false,
       tabSize: 4,
       lineWiseCopyCut: true,
+      scrollPastEnd: true,
       mode: "application/json",
       gutters: ["CodeMirror-lint-markers"],
       styleActiveLine: true,
@@ -83,16 +82,18 @@ export default class JsonEditorComponent extends Component {
     this.setFontSize(this.settings.getFontSize());
     this.setTheme(this.settings.getTheme());
 
-    let setFontSize = bind(this, this.get("setFontSize"));
-    let setTheme = bind(this, this.get("setTheme"));
+    const updateEditor = bind(this, this.updateEditor);
+    const setFontSize = bind(this, this.setFontSize);
+    const setTheme = bind(this, this.setTheme);
 
+    this.modelStorage.setOnModelChange("json", updateEditor);
     this.settings.setOnFontSizeChange(setFontSize);
     this.settings.setOnThemeChange(setTheme);
 
     this.onUpdate = bind(this.modelStorage, this.modelStorage.saveModel);
 
-    let snippets = bind(this, this.get("snippets"));
-    let replaceTabsWithSpaces = bind(this, this.get("replaceTabsWithSpaces"));
+    let snippets = bind(this, this.snippets);
+    let replaceTabsWithSpaces = bind(this, this.replaceTabsWithSpaces);
 
     this.editor.setOption("extraKeys", {
       "Ctrl-Space": "autocomplete",
@@ -107,12 +108,13 @@ export default class JsonEditorComponent extends Component {
     this.editor.toTextArea();
     this.editor = null;
 
+    this.modelStorage.removeOnModelChange("json");
     this.settings.setOnFontSizeChange(null);
     this.settings.setOnThemeChange(null);
   }
 
   snippets() {
-    const editor = this.get("editor");
+    const editor = this.editor;
 
     CodeMirror.showHint(editor, function() {
       const cursor = editor.getCursor();
@@ -144,7 +146,7 @@ export default class JsonEditorComponent extends Component {
 
     this.editor.on(event, callback);
 
-    this.one('willDestroyElement', this, function() {
+    this.one('destroyEditor', this, function() {
       this.editor.off(event, callback);
     });
   }
@@ -153,28 +155,17 @@ export default class JsonEditorComponent extends Component {
     once(this, this.updateValue, codeMirror.getValue());
   }
 
-  setError(error) {
-    this.error = error;
-
-    const onErorr = this.onError;
-    if (onErorr) {
-      this.onError(error);
-    }
-  }
-
   setValue(value) {
-    try {
-      this.value = value;
-      this.setError(null);
-      ModelVisualizer.validate(JSON.parse(value));
-    } catch (error) {
-      this.setError(error);
-    }
+    this.value = value;
   }
 
   updateValue(newValue) {
-    this.onUpdate(newValue);
+    this.onUpdate("json", newValue);
     this.setValue(newValue);
+  }
+
+  updateEditor(value) {
+    this.editor.setValue(value);
   }
 
   setOption(key, value) {

@@ -10,9 +10,8 @@ module('Unit | Route | index', function(hooks) {
     assert.ok(route);
   });
 
-  test('should show editor-visualizer as the home page', async function (assert) {
+  test('should show visual-editor as the home page', async function (assert) {
     await visit('/');
-
-    assert.equal(currentURL(), '/editor-visualizer', 'Should redirect automatically');
+    assert.equal(currentURL(), '/visual-editor', 'Should redirect automatically');
   });
 });

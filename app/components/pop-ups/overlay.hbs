@@ -1,0 +1,14 @@
+{{!-- template-lint-disable no-invalid-interactive --}}
+
+<div class="h-screen w-screen flex justify-center items-center absolute top-0 right-0 top-z-index bg-transparent-black" role="button"
+  {{on "click" this.overlayCallback}}
+  {{on "touch" this.overlayCallback}}
+  data-test-overlay-pop-up
+>
+  <div class="p-6 w-1/2 max-h-3/4 bg-white border border-solid border-gray-300 overflow-y-scroll cursor-default"
+    {{on "click" this.stopPropagation}}
+    ...attributes
+  >
+    {{yield}}
+  </div>
+</div>

@@ -14,6 +14,12 @@ export default class SelectDropdownComponent extends Component {
   }
 
   @action
+  update() {
+    this.selectedItem = this.args.selectedItem;
+    this.onSelect = this.args.onSelectCallback;
+  }
+
+  @action
   selectItem(event) {
     this.selectedItem = event.target.value;
     const onSelect = this.onSelect;

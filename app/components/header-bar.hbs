@@ -1,5 +1,64 @@
-<a href="javascript:void(0)" class="inline-block no-underline text-4xl side-bar-show-button" {{on "click" @showSideBarCallback}}>
-  <MenuIcon @size="1.5rem" @color="black" />
-</a>
+<nav class="w-screen h-12 flex items-center bg-white border-b border-solid border-gray-300" data-test-header-bar>
+  <div id="logo" class="h-full flex items-center px-2 logo-gradient">
+    <LinkTo @route="index">
+      <Icons::Logo @size="30px" @color="white"/>
+    </LinkTo>
+  </div>
 
-<h1 class="inline-block mx-1">Model-Editor</h1>
+  <div class="flex-1 mx-2">
+    <LinkTo @route="index">
+      <h2 class="text-lg roboto-medium">Model-Editor</h2>
+    </LinkTo>
+  </div>
+
+  <div class="mx-2">
+    <div class="px-1 dropdown">
+      <div class="h-12 flex items-center">
+        <Icons::More @size="1.25rem" @color="#5F6369" />
+      </div>
+
+      <div class="dropdown-content divide-y  border-l border-r border-b border-solid border-gray-300 top-z-index bg-white">
+        <LinkTo @route={{if (eq @currentPath "viewer") "visual-editor" "viewer"}} data-test-view-button>
+          <div class="p-3 hover:bg-gray-300">
+            {{#if (eq @currentPath "viewer")}}
+              Edit Models
+            {{else}}
+              View Models
+            {{/if}}
+          </div>
+        </LinkTo>
+        <div role="button" class="p-3 hover:bg-gray-300" data-test-export-import-button
+          {{on "click" @exportImportCallback}}
+          {{on "touch" @exportImportCallback}}
+        >
+          Export/Import
+        </div>
+        <div role="button" class="p-3 hover:bg-gray-300" data-test-settings-button
+          {{on "click" @settingsCallback}}
+          {{on "touch" @settingsCallback}}
+        >
+          Settings
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-2 px-3 flex border-l border-solid border-gray-300">
+    <div class="tooltip mx-1">
+      <LinkTo @route={{if (eq @currentPath "json-editor") "visual-editor" "json-editor"}} data-test-json-editor-button>
+        <Icons::JsonEditor @size="1.25rem" @color={{if (eq @currentPath "json-editor") "#17AD38" "#5F6369"}} />
+      </LinkTo>
+
+      <span class="tooltiptext">Toggle JSON Editor</span>
+    </div>
+
+    <div class="mx-1 cursor-pointer tooltip" role="button" data-test-help-button
+      {{on "click" @helpCallback}}
+      {{on "touch" @helpCallback}}
+    >
+      <Icons::Help @size="1.25rem" @color="#5F6369"/>
+
+      <span class="tooltiptext">Help</span>
+    </div>
+  </div>
+</nav>
