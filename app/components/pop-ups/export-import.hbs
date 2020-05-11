@@ -1,0 +1,68 @@
+{{#if this.displayConfirmationPopUp}}
+  <PopUps::Confirmation @acceptMessage="Load" @acceptCallback={{this.loadModel}} @cancelCallback={{this.hideConfirmationPopUp}}>
+    <p>Are you sure you want to load models from: <strong>{{loadedFileName}}</strong>?</p>
+    <p class="text-gray-600 text-xs italic my-2">You might lose your current models. Make sure to save your models before loading.</p>
+  </PopUps::Confirmation>
+{{else}}
+  <PopUps::Overlay @overlayCallback={{@overlayCallback}} data-test-export-import-pop-up>
+    <form class="w-full">
+      <h2 class="text-xl pb-3 roboto-bold">Export</h2>
+
+      <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="w-full px-3">
+          <label class="input-label block mb-2 mb-2" for="grid-password">
+            File name:
+          </label>
+          <Input @type="text" @value={{this.fileName}} class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" />
+          <p class="text-gray-600 text-xs italic">The name of your models json file.</p>
+        </div>
+
+        <div class="w-full px-3">
+          <button type="button" class="bg-green-500 hover:bg-green-400 text-white font-bold py-1 px-4 my-2 rounded"
+            {{on "click" this.saveModel}}
+          >
+            Save Models
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <form class="w-full">
+      <h2 class="text-xl pb-3 roboto-bold">Import</h2>
+
+      <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="w-full px-3">
+          <label class="input-label block mb-2" for="grid-password">
+            Choase a file:
+          </label>
+
+          <label for="model-file-input" class="cursor-pointer text-lg bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-4 border border-blue-500 hover:border-transparent rounded">
+            Browse
+          </label>
+          <input type="file" id="model-file-input" name="file" class="model-file-input" accept=".json"
+            {{on "change" this.readModelsFromFile passive=false}}
+          />
+
+          {{#if loadedFileName}}
+            <p class="text-gray-600 text-xs italic my-2">File Name: <strong>{{loadedFileName}}</strong>.</p>
+          {{else if loading}}
+            <div class="flex my-2">
+              <Icons::Loader @size="1rem" class="spinning" />
+              <p class="text-gray-600 text-xs italic ml-2">Loading...</p>
+            </div>
+          {{else if error}}
+            <p class="text-red-600 text-xs italic my-2"><strong>Error: </strong>{{error}}</p>
+          {{else}}
+            <p class="text-gray-600 text-xs italic my-2">No file chosen.</p>
+          {{/if}}
+        </div>
+
+        <div class="w-full px-3">
+          <button type="button" disabled={{not loadedFileName}} class="bg-green-500 hover:bg-green-400 text-white font-bold py-1 px-4 my-2 rounded {{unless loadedFileName "cursor-not-allowed"}}" {{on "click" this.showConfirmationPopUp}}>
+            Load Models
+          </button>
+        </div>
+      </div>
+    </form>
+  </PopUps::Overlay>
+{{/if}}

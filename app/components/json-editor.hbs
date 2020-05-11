@@ -1,12 +1,4 @@
-<div class="flex flex-col h-v-85">
-  {{#if error}}
-    <ErrorAlert id="json-error" class="flex-initial" @error={{this.error}} />
-  {{/if}}
-
-  <div class="h-v-85 border border-black">
-    <Textarea id="json-editor" @value={{this.value}}
-      {{did-insert this.createEditor}}
-      {{will-destroy this.destroyEditor}}
-    />
-  </div>
-</div>
+<Textarea id="json-editor" class="h-100 w-100" @value={{this.value}}
+  {{did-insert this.createEditor}}
+  {{will-destroy this.destroyEditor}}
+/>

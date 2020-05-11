@@ -1,0 +1,17 @@
+{{!-- template-lint-disable no-invalid-interactive --}}
+
+<div class="w-screen h-main flex flex-colloms"
+  {{did-insert this.createDragable}}
+  {{will-destroy this.destroyDragable}}
+>
+  <div id="left">
+    <ModelViewer class="h-main" @editMode={{false}} />
+  </div>
+
+  <div id="dragbar" class="h-main bg-gray-300" role="button" {{on "mousedown" this.dragstart}}>
+  </div>
+
+  <div id="right" class="h-main">
+    <JsonEditor class="h-main" />
+  </div>
+</div>

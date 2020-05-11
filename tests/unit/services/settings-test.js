@@ -9,7 +9,7 @@ module('Unit | Service | settings', function(hooks) {
     assert.ok(service);
   });
 
-  test('it should call a handler', async function(assert) {
+  test('callHandler should call a handler function', async function(assert) {
     let service = this.owner.lookup('service:settings');
     service.set("called", false);
 
@@ -21,7 +21,7 @@ module('Unit | Service | settings', function(hooks) {
     service.callHandler("onChange");
   });
 
-  test('it should call a handler with arguments', async function(assert) {
+  test('callHandler should call a handler function with arguments', async function(assert) {
     let service = this.owner.lookup('service:settings');
     service.set("argument", null);
 
@@ -32,9 +32,35 @@ module('Unit | Service | settings', function(hooks) {
 
     service.callHandler("onChange", "newValue");
   });
+
+  test('resetEditorSettings should reset theme and fontSize', function(assert) {
+    let service = this.owner.lookup('service:settings');
+    service.theme = null;
+    service.fontSize = null;
+
+    service.resetEditorSettings();
+
+    assert.equal(service.theme, service.defaultTheme);
+    assert.equal(service.fontSize, service.defaultFontSize);
+  });
+
+  test('resetVisualizerSettings should reset graphDirectio, vertexSeparation, edgeSeparation and rankSeparation', function(assert) {
+    let service = this.owner.lookup('service:settings');
+    service.graphDirection = null;
+    service.vertexSeparation = null;
+    service.edgeSeparation = null;
+    service.rankSeparation = null;
+
+    service.resetVisualizerSettings();
+
+    assert.equal(service.graphDirection, service.defaultGraphDirection);
+    assert.equal(service.vertexSeparation, service.defaultVertexSeparation);
+    assert.equal(service.edgeSeparation, service.defaultEdgeSeparation);
+    assert.equal(service.rankSeparation, service.defaultRankSeparation);
+  });
 });
 
-module('Unit | Service | settings | theme', function(hooks) {
+module('Unit | Service | settings > theme', function(hooks) {
   setupTest(hooks);
 
   hooks.beforeEach(function() {
@@ -88,7 +114,7 @@ module('Unit | Service | settings | theme', function(hooks) {
   });
 });
 
-module('Unit | Service | settings | fontSize', function(hooks) {
+module('Unit | Service | settings > fontSize', function(hooks) {
   setupTest(hooks);
 
   hooks.beforeEach(function() {
@@ -142,7 +168,7 @@ module('Unit | Service | settings | fontSize', function(hooks) {
   });
 });
 
-module('Unit | Service | settings | graphDirection', function(hooks) {
+module('Unit | Service | settings > graphDirection', function(hooks) {
   setupTest(hooks);
 
   hooks.beforeEach(function() {
@@ -207,7 +233,7 @@ module('Unit | Service | settings | graphDirection', function(hooks) {
   });
 });
 
-module('Unit | Service | settings | vertexSeparation', function(hooks) {
+module('Unit | Service | settings > vertexSeparation', function(hooks) {
   setupTest(hooks);
 
   hooks.beforeEach(function() {
@@ -261,7 +287,7 @@ module('Unit | Service | settings | vertexSeparation', function(hooks) {
   });
 });
 
-module('Unit | Service | settings | edgeSeparation', function(hooks) {
+module('Unit | Service | settings > edgeSeparation', function(hooks) {
   setupTest(hooks);
 
   hooks.beforeEach(function() {
@@ -315,7 +341,7 @@ module('Unit | Service | settings | edgeSeparation', function(hooks) {
   });
 });
 
-module('Unit | Service | settings | rankSeparation', function(hooks) {
+module('Unit | Service | settings > rankSeparation', function(hooks) {
   setupTest(hooks);
 
   hooks.beforeEach(function() {
@@ -369,7 +395,7 @@ module('Unit | Service | settings | rankSeparation', function(hooks) {
   });
 });
 
-module('Unit | Service | settings | graphLayoutOptions', function(hooks) {
+module('Unit | Service | settings > graphLayoutOptions', function(hooks) {
   setupTest(hooks);
 
   hooks.beforeEach(function() {

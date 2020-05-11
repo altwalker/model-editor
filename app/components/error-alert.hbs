@@ -1,4 +1,8 @@
-<div class="error-alert bg-red-lightest border border-red-light text-red-dark px-4 py-3 mb-2 rounded relative" role="alert">
-  <strong class="font-bold">{{get @error "name"}}:</strong>
-  <span class="inline">{{get @error "message"}}</span>
+<div id="error-alert" class="bg-red-100 border-b-4 border-red-500 text-red-900 px-4 py-3 shadow-md" role="alert" data-test-error>
+  <div class="flex">
+    <div>
+      <p class="font-bold" data-test-error-name>{{get @error "name"}}:</p>
+      <p class="text-sm" data-test-error-message>{{get @error "message"}}</p>
+    </div>
+  </div>
 </div>

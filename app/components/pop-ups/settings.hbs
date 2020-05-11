@@ -1,0 +1,70 @@
+<PopUps::Overlay @overlayCallback={{@overlayCallback}} data-test-settings-pop-up>
+  <form class="w-full">
+    <h2 class="text-xl py-3 roboto-bold">Editor Settings</h2>
+
+    <div class="flex flex-wrap -mx-3 mb-3">
+      <div class="w-full px-3">
+        <label class="input-label mb-2 mr-2">Font Size:</label>
+        <SelectDropdown id="font-size-select" class="mb-3" @onSelectCallback={{this.selectFontSize}} @items={{this.fontSizes}} @selectedItem={{this.fontSize}} />
+      </div>
+
+      <div class="w-full px-3">
+        <label class="input-label mb-2 mr-2">Theme:</label>
+        <SelectDropdown id="theme-select" class="mb-3" @onSelectCallback={{this.selectTheme}} @items={{this.themes}} @selectedItem={{this.theme}} />
+      </div>
+
+      <div class="w-full px-3">
+        <button type="button" class="bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-1 px-4 my-2 rounded focus:outline-none"
+          {{on "click" this.resetEditorSettings}}
+          {{on "touch" this.resetEditorSettings}}
+        >
+          Reset
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <form class="w-full">
+    <h2 class="text-xl py-3 roboto-bold">Visualizer Settings</h2>
+
+    <div class="flex flex-wrap -mx-3 mb-3">
+      <div class="w-full px-3 mb-1">
+        <label class="input-label mb-2 mr-2">Graph Direction:</label>
+        <SelectDropdown id="graph-direction-select" class="mb-3" @onSelectCallback={{this.selectGraphDirection}} @items={{this.graphDirections}} @selectedItem={{this.graphDirection}} />
+      </div>
+
+      <div class="w-full px-3">
+        <p class="input-label">Vertex Separation:  <span class="text-green-600 text-base ml-1">{{this.vertexSeparation}}</span></p>
+
+        <Input @type="range" @min={{this.minVertexSeparation}} @max={{this.maxVertexSeparation}} @value={{this.vertexSeparation}} @steps="1" @class="range-slider w-full" @input={{this.updteVertexSeparation}} />
+
+        <p class="text-gray-600 text-xs italic my-2">Number of pixels that separate vertex horizontally in the layout.</p>
+      </div>
+
+      <div class="w-full px-3">
+        <p class="input-label">Edge Separation: <span class="text-green-600 text-base ml-1">{{this.edgeSeparation}}</span></p>
+
+        <Input @type="range" @min={{this.minEdgeSeparation}} @max={{this.maxEdgeSeparation}} @value={{this.edgeSeparation}} @steps="1" @class="range-slider w-full" @input={{this.updteEdgeSeparation}} />
+
+        <p class="text-gray-600 text-xs italic my-2">Number of pixels that separate edges horizontally in the layout.</p>
+      </div>
+
+      <div class="w-full px-3">
+        <p class="input-label">Rank Separation: <span class="text-green-600 text-base ml-1">{{this.rankSeparation}}</span></p>
+
+        <Input @type="range" @min={{this.minRankSeparation}} @max={{this.maxRankSeparation}} @value={{this.rankSeparation}} @steps="1" class="range-slider w-full" @input={{this.updteRankSeparation}} />
+
+        <p class="text-gray-600 text-xs italic my-2">Number of pixels between each rank in the layout.</p>
+      </div>
+
+      <div class="w-full px-3">
+        <button type="button" class="bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-1 px-4 my-2 rounded focus:outline-none"
+          {{on "click" this.resetVisualizerSettings}}
+          {{on "touch" this.resetVisualizerSettings}}
+        >
+          Reset
+        </button>
+      </div>
+    </div>
+  </form>
+</PopUps::Overlay>

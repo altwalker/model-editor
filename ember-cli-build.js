@@ -1,10 +1,21 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const tailwindcss = require('tailwindcss');
+const cssImport = require('postcss-import');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
-    // Add options here
+    postcssOptions: {
+      compile: {
+        path: ['app/styles'],
+        root: 'app/styles',
+        plugins: [
+          { module: cssImport },
+          tailwindcss('app/styles/tailwind.config.js'),
+        ]
+      }
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -26,72 +37,50 @@ module.exports = function(defaults) {
 
   app.import('node_modules/codemirror/mode/javascript/javascript.js');
 
+  app.import('node_modules/codemirror/addon/scroll/scrollpastend.js');
+
   app.import('node_modules/codemirror/addon/lint/lint.css');
   app.import('node_modules/codemirror/addon/lint/lint.js');
   app.import('node_modules/codemirror/addon/lint/json-lint.js');
 
   app.import('node_modules/jsonlint/lib/jsonlint.js');
 
-  app.import('node_modules/codemirror/addon/hint/show-hint.css');
+  app.import('node_modules/codemirror/addon/hint/anyword-hint.js');
   app.import('node_modules/codemirror/addon/hint/show-hint.js');
+  app.import('node_modules/codemirror/addon/hint/show-hint.css');
 
   // CodeMirror Themes
-  app.import('node_modules/codemirror/theme/3024-day.css');
-  app.import('node_modules/codemirror/theme/3024-night.css');
-  app.import('node_modules/codemirror/theme/abcdef.css');
-  app.import('node_modules/codemirror/theme/ambiance.css');
   app.import('node_modules/codemirror/theme/base16-dark.css');
   app.import('node_modules/codemirror/theme/base16-light.css');
   app.import('node_modules/codemirror/theme/bespin.css');
   app.import('node_modules/codemirror/theme/blackboard.css');
-  app.import('node_modules/codemirror/theme/cobalt.css');
   app.import('node_modules/codemirror/theme/colorforth.css');
-  app.import('node_modules/codemirror/theme/darcula.css');
   app.import('node_modules/codemirror/theme/dracula.css');
   app.import('node_modules/codemirror/theme/duotone-dark.css');
   app.import('node_modules/codemirror/theme/duotone-light.css');
   app.import('node_modules/codemirror/theme/eclipse.css');
   app.import('node_modules/codemirror/theme/elegant.css');
-  app.import('node_modules/codemirror/theme/erlang-dark.css');
-  app.import('node_modules/codemirror/theme/gruvbox-dark.css');
   app.import('node_modules/codemirror/theme/hopscotch.css');
   app.import('node_modules/codemirror/theme/icecoder.css');
   app.import('node_modules/codemirror/theme/idea.css');
   app.import('node_modules/codemirror/theme/isotope.css');
-  app.import('node_modules/codemirror/theme/lesser-dark.css');
-  app.import('node_modules/codemirror/theme/liquibyte.css');
   app.import('node_modules/codemirror/theme/lucario.css');
   app.import('node_modules/codemirror/theme/material.css');
-  app.import('node_modules/codemirror/theme/mbo.css');
-  app.import('node_modules/codemirror/theme/mdn-like.css');
-  app.import('node_modules/codemirror/theme/midnight.css');
   app.import('node_modules/codemirror/theme/monokai.css');
   app.import('node_modules/codemirror/theme/moxer.css');
-  app.import('node_modules/codemirror/theme/neat.css');
   app.import('node_modules/codemirror/theme/neo.css');
-  app.import('node_modules/codemirror/theme/night.css');
   app.import('node_modules/codemirror/theme/nord.css');
   app.import('node_modules/codemirror/theme/oceanic-next.css');
   app.import('node_modules/codemirror/theme/panda-syntax.css');
-  app.import('node_modules/codemirror/theme/paraiso-dark.css');
-  app.import('node_modules/codemirror/theme/paraiso-light.css');
   app.import('node_modules/codemirror/theme/pastel-on-dark.css');
   app.import('node_modules/codemirror/theme/railscasts.css');
-  app.import('node_modules/codemirror/theme/rubyblue.css');
   app.import('node_modules/codemirror/theme/seti.css');
-  app.import('node_modules/codemirror/theme/shadowfox.css');
   app.import('node_modules/codemirror/theme/solarized.css');
-  app.import('node_modules/codemirror/theme/the-matrix.css');
-  app.import('node_modules/codemirror/theme/tomorrow-night-bright.css');
-  app.import('node_modules/codemirror/theme/tomorrow-night-eighties.css');
   app.import('node_modules/codemirror/theme/ttcn.css');
-  app.import('node_modules/codemirror/theme/twilight.css');
-  app.import('node_modules/codemirror/theme/vibrant-ink.css');
   app.import('node_modules/codemirror/theme/xq-dark.css');
   app.import('node_modules/codemirror/theme/xq-light.css');
   app.import('node_modules/codemirror/theme/yeti.css');
   app.import('node_modules/codemirror/theme/yonce.css');
-  app.import('node_modules/codemirror/theme/zenburn.css');
 
   // FileSaver
   app.import('node_modules/file-saver/dist/FileSaver.min.js');

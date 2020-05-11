@@ -2,6 +2,8 @@
 
 A web based editor for AltWalker and GraphWalker models.
 
+https://altom.gitlab.io/altwalker/model-editor
+
 ![Screenshot](/public/screenshots/screenshot.png)
 
 ## Prerequisites
@@ -15,7 +17,7 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
+* `git clone https://gitlab.com/altom/altwalker/model-editor.git`
 * `cd model-editor`
 * `npm install`
 
@@ -28,6 +30,13 @@ You will need the following things properly installed on your computer.
 ### Code Generators
 
 Make use of the many generators for code, try `ember help generate` for more details
+
+Make sure to use the new ember octaine components:
+
+```bash
+# -gc stands for glimmer component
+$ ember generate component my-component -gc
+```
 
 ### Running Tests
 
@@ -47,9 +56,17 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Specify what it takes to deploy your app.
+Check the [.gitlab-ci.yml](.gitlab-ci.yml) file.
 
-## Further Reading / Useful Links
+## Support
+
+Join our Gitter chat room [here](https://gitter.im/altwalker/community) to chat with us or with other members of the community.
+
+## License
+
+Model-Editor is licensed under the GNU General Public License v3.0.
+
+## Further Reading/Useful Links
 
 * [ember.js](https://emberjs.com/)
 * [ember-cli](https://ember-cli.com/)

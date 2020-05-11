@@ -1,17 +1,42 @@
 import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default class ApplicationController extends Controller {
-  @tracked isSideBarShown = false;
+  @service router;
+
+  @tracked displayHelpPopUp = false;
+  @tracked displayExportImportPopUp = false;
+  @tracked displaySettingsPopUp = false;
 
   @action
-  showSideBar() {
-    this.isSideBarShown = true;
+  showHelpPopUp() {
+    this.displayHelpPopUp = true;
   }
 
   @action
-  hideSideBar() {
-    this.isSideBarShown = false;
+  hideHelpPopUp() {
+    this.displayHelpPopUp = false;
+  }
+
+  @action
+  showExportImportPopUp() {
+    this.displayExportImportPopUp = true;
+  }
+
+  @action
+  hideExportImportPopUp() {
+    this.displayExportImportPopUp = false;
+  }
+
+  @action
+  showSettingsPopUp() {
+    this.displaySettingsPopUp = true;
+  }
+
+  @action
+  hideSettingsPopUp() {
+    this.displaySettingsPopUp = false;
   }
 }
