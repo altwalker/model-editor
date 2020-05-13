@@ -61,6 +61,7 @@ export default class PopUpsExportImportComponent extends Component {
   @action
   loadModel() {
     this.modelStorage.saveModel("import", this.models);
+    this.args.overlayCallback()
   }
 
   @action
