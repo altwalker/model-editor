@@ -12,7 +12,8 @@ module.exports = {
     "ModelVisualizer": true,
     "CodeMirror": true,
     "FileSaver": true,
-    "saveAs": true
+    "saveAs": true,
+    "fathom": true,
   },
   plugins: [
     'ember'

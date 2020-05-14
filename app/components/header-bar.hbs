@@ -18,7 +18,10 @@
       </div>
 
       <div class="dropdown-content divide-y  border-l border-r border-b border-solid border-gray-300 top-z-index bg-white">
-        <LinkTo @route={{if (eq @currentPath "viewer") "visual-editor" "viewer"}} data-test-view-button>
+        <LinkTo @route={{if (eq @currentPath "viewer") "visual-editor" "viewer"}} data-test-view-button
+          {{on "click" this.trackViewModels}}
+          {{on "touch" this.trackViewModels}}
+        >
           <div class="p-3 hover:bg-gray-300">
             {{#if (eq @currentPath "viewer")}}
               Edit Models
@@ -28,12 +31,16 @@
           </div>
         </LinkTo>
         <div role="button" class="p-3 hover:bg-gray-300" data-test-export-import-button
+          {{on "click" this.trackExportImport}}
+          {{on "touch" this.trackExportImport}}
           {{on "click" @exportImportCallback}}
           {{on "touch" @exportImportCallback}}
         >
           Export/Import
         </div>
         <div role="button" class="p-3 hover:bg-gray-300" data-test-settings-button
+          {{on "click" this.trackSettings}}
+          {{on "touch" this.trackSettings}}
           {{on "click" @settingsCallback}}
           {{on "touch" @settingsCallback}}
         >
@@ -45,7 +52,10 @@
 
   <div class="mx-2 px-3 flex border-l border-solid border-gray-300">
     <div class="tooltip mx-1">
-      <LinkTo @route={{if (eq @currentPath "json-editor") "visual-editor" "json-editor"}} data-test-json-editor-button>
+      <LinkTo @route={{if (eq @currentPath "json-editor") "visual-editor" "json-editor"}} data-test-json-editor-button
+        {{on "click" this.trackToggleJson}}
+        {{on "touch" this.trackToggleJson}}
+      >
         <Icons::JsonEditor @size="1.25rem" @color={{if (eq @currentPath "json-editor") "#17AD38" "#5F6369"}} />
       </LinkTo>
 
@@ -53,6 +63,8 @@
     </div>
 
     <div class="mx-1 cursor-pointer tooltip" role="button" data-test-help-button
+      {{on "click" this.trackHelp}}
+      {{on "touch" this.trackHelp}}
       {{on "click" @helpCallback}}
       {{on "touch" @helpCallback}}
     >
