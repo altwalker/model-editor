@@ -20,6 +20,18 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+
+      // Fathom Goal IDs
+      fantomGoalIDs: {
+        toggleJson: "JYR7RSH2",
+        help: "3OAJVCKD",
+        viewModels: "KARLXKOV",
+        exportImport: "ZQGJFQP9",
+        settings: "FCDPSB7Y",
+        altWalkerDocumentation: "IMKV4ZFX",
+        graphWalkerDocumentation: "T7NFXPIH",
+        gitter: "N0GD6ENO"
+      }
     }
   };
 
