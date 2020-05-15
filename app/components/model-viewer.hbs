@@ -1,6 +1,6 @@
 {{#if this.error}}
   <div class="absolute w-full">
-    <ErrorAlert @error={{this.error}} />
+    <ErrorAlert @error={{this.error}} class={{if @editMode "error-alert-edit-mode" "error-alert"}} />
   </div>
 {{/if}}
 
