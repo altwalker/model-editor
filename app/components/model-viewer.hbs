@@ -1,11 +1,23 @@
-{{#if this.error}}
-  <div class="absolute w-full">
-    <ErrorAlert @error={{this.error}} class={{if @editMode "error-alert-edit-mode" "error-alert"}} />
-  </div>
-{{/if}}
+<div class="h-main">
+  <div id="model-viewer-error" class="{{unless this.error "hidden"}} w-full flex flex-col absolute {{if (eq this.error.name "PlottingError") "h-main bg-white"}}">
+    <ErrorAlert @error={{this.error}} class="{{if @editMode "error-alert-edit-mode" "error-alert"}}" />
 
-<div id="visualizer" class="h-100"
-  {{did-insert this.createModelViewer}}
-  {{did-update this.updateEditMode @editMode}}
-  {{will-destroy this.destroyModelViewer}}>
+    {{#if (eq this.error.name "PlottingError")}}
+      <div class="flex-1 flex justify-center items-center">
+        <div class="text-red-900 text-center">
+          <p class="text-xl roboto-bold">Unplottable Graph</p>
+
+          <p>You need to solve the issues to use the Visual Editor or the View Mode.</p>
+        </div>
+      </div>
+    {{/if}}
+  </div>
+
+  <div class="h-full {{if (eq this.error.name "PlottingError") "hidden"}}">
+    <div id="visualizer"
+      {{did-insert this.createModelViewer}}
+      {{did-update this.updateEditMode @editMode}}
+      {{will-destroy this.destroyModelViewer}}>
+    </div>
+  </div>
 </div>

@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 
 export default class HeaderBarComponent extends Component {
   @service tracker;
+  @service modelStorage;
 
   @action
   trackToggleJson() {

@@ -1,16 +1,22 @@
 import Component from '@ember/component';
 import { action } from '@ember/object';
-import { inject as service } from '@ember/service';
 import { bind } from '@ember/runloop';
+import { tracked } from '@glimmer/tracking';
+import { inject as service } from '@ember/service';
 
 export default class ModelViewerComponent extends Component {
   @service modelStorage;
   @service settings;
 
+  @tracked error = null;
+
   visualizer = null;
 
   @action
   createModelViewer() {
+    const setModels = bind(this, this.get("setModels"));
+    this.modelStorage.setOnModelChange("visualizer", setModels);
+
     this.visualizer = new ModelVisualizer({"container": "visualizer"});
     this.updateEditMode();
 
@@ -29,11 +35,8 @@ export default class ModelViewerComponent extends Component {
   updateEditMode() {
     this.visualizer.setEditMode(this.editMode);
 
-    const setModels = bind(this, this.get("setModels"));
-    this.modelStorage.setOnModelChange("visualizer", setModels);
-
     if (this.editMode) {
-      const handler = bind(this, this.saveModels);
+      const handler = bind(this, this.updateHandler);
       this.visualizer.setOnModelsChange(handler);
     } else {
       this.visualizer.setOnModelsChange(null);
@@ -49,23 +52,39 @@ export default class ModelViewerComponent extends Component {
     this.settings.setOnGraphLayoutOptionsChange(null);
   }
 
+  updateHandler(models) {
+    try {
+      ModelVisualizer.validate(models)
+
+      this.error = null;
+      this.modelStorage.setError(null)
+    } catch (error) {
+      this.error = error;
+      this.modelStorage.setError(error)
+    }
+
+    this.saveModels(models);
+  }
+
   setModels(models) {
     const visualizer = this.get("visualizer");
 
     try {
-      visualizer.setModels(JSON.parse(models));
-      this.setError(null);
+      let jsonModels = JSON.parse(models);
+
+      visualizer.setModels(jsonModels);
+      ModelVisualizer.validate(jsonModels)
+
+      this.error = null;
+      this.modelStorage.setError(null)
     } catch (error) {
-      this.setError(error);
+      this.error = error;
+      this.modelStorage.setError(error)
     }
   }
 
   saveModels(models) {
     this.modelStorage.saveModel("visualizer", models)
-  }
-
-  setError(error) {
-    this.set("error", error);
   }
 
   refresh() {
