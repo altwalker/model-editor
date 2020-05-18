@@ -14,6 +14,7 @@ module.exports = {
     "FileSaver": true,
     "saveAs": true,
     "fathom": true,
+    "d3": true
   },
   plugins: [
     'ember'

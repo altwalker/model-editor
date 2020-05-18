@@ -1,4 +1,5 @@
 import Service from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
 const defaultModel = `{
     "name": "Default Models",
@@ -42,6 +43,8 @@ const defaultModel = `{
 export default class ModelStorageService extends Service {
   defaultModel = defaultModel;
 
+  @tracked error = null;
+
   modelChangeCalbacks = {};
 
   loadModel() {
@@ -75,5 +78,17 @@ export default class ModelStorageService extends Service {
 
   removeOnModelChange(key) {
     delete this.modelChangeCalbacks[key];
+  }
+
+  setError(error) {
+    this.error = error;
+  }
+
+  getError() {
+    return this.error;
+  }
+
+  get isPlottingError() {
+    return this.error && this.error.name === "PlottingError";
   }
 }

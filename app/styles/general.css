@@ -102,6 +102,10 @@ body {
   max-width: 70vw;
 }
 
+#model-viewer-error {
+  width: calc(70vw - .1vw);
+}
+
 /* Dragbar */
 
 #left {

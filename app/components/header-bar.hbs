@@ -18,7 +18,9 @@
       </div>
 
       <div class="dropdown-content divide-y  border-l border-r border-b border-solid border-gray-300 top-z-index bg-white">
-        <LinkTo @route={{if (eq @currentPath "viewer") "visual-editor" "viewer"}} data-test-view-button
+        <LinkTo class={{if this.modelStorage.isPlottingError "cursor-not-allowed"}} data-test-view-button
+          @route={{if (eq @currentPath "viewer") "visual-editor" "viewer"}}
+          @disabled={{this.modelStorage.isPlottingError}}
           {{on "click" this.trackViewModels}}
           {{on "touch" this.trackViewModels}}
         >
@@ -52,7 +54,9 @@
 
   <div class="mx-2 px-3 flex border-l border-solid border-gray-300">
     <div class="tooltip mx-1">
-      <LinkTo @route={{if (eq @currentPath "json-editor") "visual-editor" "json-editor"}} data-test-json-editor-button
+      <LinkTo class={{if this.modelStorage.isPlottingError "cursor-not-allowed"}} data-test-json-editor-button
+        @route={{if (eq @currentPath "json-editor") "visual-editor" "json-editor"}}
+        @disabled={{this.modelStorage.isPlottingError}}
         {{on "click" this.trackToggleJson}}
         {{on "touch" this.trackToggleJson}}
       >
