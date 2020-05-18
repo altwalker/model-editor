@@ -1,72 +1,31 @@
-/* Nodes */
-
-.mv-visualizer .node > rect,
-.mv-visualizer .node-fake > rect,
-.mv-visualizer .node-blocked > rect {
-    fill: theme('colors.blue.600');
-    stroke-width: 0;
-
-    border-radius: 1px;
-    rx: 1;
-    ry: 1;
-}
-
-.mv-visualizer .node-label {
-    fill: theme('colors.gray.100');
-    font-size: 1.2em;
-    font-weight: 400;
-}
-
-.mv-visualizer .node-start > rect {
-    fill: theme('colors.green.600') !important;
-}
-
-.mv-visualizer .node-fake {
-    fill: theme('colors.gray.100');
-}
-
-.mv-visualizer .node-blocked {
-    font-weight: 400;
-}
-
-.mv-visualizer .node-blocked > rect {
-    fill: theme('colors.gray.600') !important;;
-}
-
-
-
-/* Edges */
-
-.mv-visualizer .edgeLabels {
-    font-size: 1.2em;
-    font-weight: 400;
-}
-
-.mv-visualizer .edgePath path {
-    stroke: theme('colors.gray.500');
-    fill: theme('colors.gray.500');
-    stroke-width: 2.5px;
-}
-
-svg.mv-visualizer .node {
-    /* Remove after model-visualizer release */
-    user-select: none;
-}
-
 /* Tootlip */
 
 .mv-tooltip {
-    border-radius: 1px !important;
-    border: 1px solid theme('colors.gray.100');
+  border-radius: 1px !important;
+  border: 1px solid theme('colors.gray.100');
 
-    @apply text-base;
+  @apply text-base;
 
-    @apply top-z-index;
-    @apply bg-blue-900;
+  @apply top-z-index;
+  @apply bg-blue-900;
 }
 
 .mv-tooltip .font-weight-bolder {
-    @apply font-bold;
+  @apply font-bold;
+}
+
+/* PopUp */
+
+.mv-pop-up {
+  width: 50%;
+}
+
+.mv-pop-up p {
+  @apply my-3;
+}
+
+.mv-pop-up .mv-button {
+  @apply mr-3;
 }
 
 /* Edit Mode */
@@ -74,254 +33,245 @@ svg.mv-visualizer .node {
 /* Visualizer */
 
 .mv-editmode .mv-visualizer {
-    width: 70vw;
-}
-
-.mv-editmode .mv-visualizer .node > rect:hover,
-.mv-editmode .mv-visualizer .node > rect:focus,
-.mv-editmode .mv-visualizer .node.edit rect {
-    fill: theme('colors.purple.800') !important;
-    stroke-width: 0;
+  width: 70vw;
 }
 
 /* Edit Form */
 
 .mv-editmode .mv-editor {
-    @apply h-full;
-    @apply overflow-y-scroll;
+  @apply h-full;
+  @apply overflow-y-scroll;
 
-    @apply bg-white;
+  @apply bg-white;
 
-    @apply p-0;
-    @apply border-solid;
-    @apply border-l;
-    @apply border-gray-300;
+  @apply p-0;
+  @apply border-solid;
+  @apply border-l;
+  @apply border-gray-300;
 
-    width: 30vw;
+  width: 30vw;
 }
 
-#mv-btn-new-model {
-    @apply m-3;
-    @apply mb-6;
-
-    display: block;
-}
-
-.mv-editor > label {
-    @apply mx-3;
-}
-
-.mv-editor > select {
-    @apply mx-3;
-
-    width: calc(100% - 1.5rem) !important;
+.mv-edit-project,
+.mv-edit-model,
+.mv-edit-vertex,
+.mv-edit-edge {
+  @apply mb-6;
+  @apply p-3;
 }
 
 .mv-edit-model,
 .mv-edit-vertex,
 .mv-edit-edge {
-    @apply border-t;
-    @apply border-solid;
-    @apply border-gray-300;
-
-    @apply my-6;
-    @apply p-3;
+  @apply border-t;
+  @apply border-solid;
+  @apply border-gray-300;
 }
 
 .mv-editmode .mv-editor h2 {
-    @apply text-lg;
-    @apply font-bold;
-    @apply py-2;
+  @apply text-lg;
+  @apply font-bold;
+  @apply py-2;
 
-    @apply roboto-bold;
+  @apply roboto-bold;
+}
+
+.mv-edit-model > *:last-child,
+.mv-edit-vertex > *:last-child,
+.mv-edit-edge > *:last-child {
+  @apply py-3;
+
+  @apply border-t;
+  @apply border-solid;
+  @apply border-gray-300;
 }
 
 /* Buttons */
 
-.mv-editmode .mv-editor button {
-    @apply bg-green-500;
+.mv-button {
+  @apply bg-green-500;
 
-    @apply text-white;
-    @apply text-lg;
-    @apply font-bold;
-    @apply py-1;
-    @apply px-4;
-    @apply my-2;
-    @apply rounded;
+  @apply text-white;
+  @apply text-lg;
+  @apply font-bold;
+  @apply py-1;
+  @apply px-4;
+  @apply my-2;
+  @apply rounded;
 }
 
-.mv-editmode .mv-editor button:hover {
-    @apply bg-green-300;
+.mv-button:hover {
+  @apply bg-green-300;
 }
 
-#mv-btn-delete-model,
-#mv-btn-delete-vertex,
-#mv-btn-delete-edge {
-    background-color: theme('colors.red.500');
+.mv-button-delete-model,
+.mv-button-delete-vertex,
+.mv-button-delete-edge {
+  background-color: theme('colors.red.500');
 }
 
-#mv-btn-delete-model:hover,
-#mv-btn-delete-vertex:hover,
-#mv-btn-delete-edge:hover {
-    background-color: theme('colors.red.300');
+.mv-button-delete-model:hover,
+.mv-button-delete-vertex:hover,
+.mv-button-delete-edge:hover {
+  background-color: theme('colors.red.300');
 }
 
 /* Select */
 
 .mv-editmode .mv-editor select {
-    @apply custom-select;
+  @apply custom-select;
 
-    @apply w-full;
+  @apply w-full;
 
-    @apply py-2;
-    @apply px-4;
-    @apply mb-3;
+  @apply py-2;
+  @apply px-4;
+  @apply mb-3;
 }
 
 .mv-editmode .mv-editor select:hover {
-    @apply border-green-500;
+  @apply border-green-500;
 }
 
 .mv-editmode .mv-editor select:focus {
-    @apply border;
-    @apply border-green-500;
+  @apply border;
+  @apply border-green-500;
 
-    @apply outline-none;
-    @apply shadow-none;
+  @apply outline-none;
+  @apply shadow-none;
 }
 
 /* Input */
 
 .mv-editmode .mv-editor label {
-    @apply block;
-    @apply uppercase;
-    @apply tracking-wide;
+  @apply block;
+  @apply uppercase;
+  @apply tracking-wide;
 
-    @apply text-gray-700;
-    @apply text-xs;
-    @apply font-bold;
+  @apply text-gray-700;
+  @apply text-xs;
+  @apply font-bold;
 
-    @apply mb-2;
+  @apply mb-2;
 }
 
 .mv-editmode .mv-editor input {
-    @apply mb-3
+  @apply mb-3
 }
 
 .mv-editmode .mv-editor input[type="text"],
 .mv-editmode .mv-editor input[type="number"] {
-    @apply appearance-none;
-    @apply block;
-    @apply w-full;
+  @apply appearance-none;
+  @apply block;
+  @apply w-full;
 
-    @apply bg-gray-100;
-    @apply text-gray-700;
+  @apply bg-gray-100;
+  @apply text-gray-700;
 
-    @apply border;
-    @apply border-gray-400;
-    @apply rounded;
+  @apply border;
+  @apply border-gray-400;
+  @apply rounded;
 
-    @apply py-2;
-    @apply px-4;
+  @apply py-2;
+  @apply px-4;
 
-    @apply leading-tight;
+  @apply leading-tight;
 }
 
 .mv-editmode .mv-editor input[type="text"]:focus,
 .mv-editmode .mv-editor input[type="number"]:focus {
-    @apply outline-none;
-    @apply bg-white;
-    @apply border-green-500;
+  @apply outline-none;
+  @apply bg-white;
+  @apply border-green-500;
 }
 
 .mv-editmode .mv-editor input[type="text"]:disabled,
 .mv-editmode .mv-editor input[type="number"]:disabled {
-    @apply bg-gray-300;
-    @apply text-black;
-    @apply border-gray-500;
+  @apply bg-gray-300;
+  @apply text-black;
+  @apply border-gray-500;
 }
 
 /* Actions */
 
 .mv-edit-action {
-    @apply mt-6;
-    @apply pt-6;
+  @apply my-6;
+  @apply pt-6;
 
-    @apply border-solid;
-    @apply border-t;
-    @apply border-gray-300;
+  @apply border-solid;
+  @apply border-t;
+  @apply border-gray-300;
 }
 
 .mv-added-action,
 .mv-new-action {
-    @apply w-full;
-    @apply mb-3;
+  @apply w-full;
+  @apply mb-3;
 
-    @apply flex;
-    @apply flex-row;
+  @apply flex;
+  @apply flex-row;
 }
 
 .mv-added-action {
-    @apply flex-row-reverse;
+  @apply flex-row-reverse;
 }
 
 .mv-new-action {
-    @apply flex-wrap;
-    @apply mt-6;
+  @apply flex-wrap;
+  @apply mt-6;
 }
 
-.mv-remove-action,
-.mv-add-action {
-    margin: 0 !important;
-    width: 15%;
+.mv-button-remove-action,
+.mv-button-add-action {
+  margin: 0 !important;
+  width: 15%;
 }
 
-.mv-remove-action  {
-    background-color: theme('colors.red.500') !important;
+.mv-button-remove-action  {
+  background-color: theme('colors.red.500') !important;
 }
 
-.mv-remove-action:hover  {
-    background-color: theme('colors.red.300') !important;
+.mv-button-remove-action:hover  {
+  background-color: theme('colors.red.300') !important;
 }
 
 .mv-action {
-    @apply flex-1;
+  @apply flex-1;
 
-    @apply bg-gray-300;
-    @apply text-black;
+  @apply bg-gray-300;
+  @apply text-black;
 
-    @apply border;
-    @apply border-gray-500;
-    @apply rounded;
+  @apply border;
+  @apply border-gray-500;
+  @apply rounded;
 
-    @apply mr-2;
-    @apply py-1;
-    @apply px-4;
+  @apply mr-2;
+  @apply py-1;
+  @apply px-4;
 }
 
 .mv-new-action > input {
-    @apply mr-2;
+  @apply mr-2;
 
-    max-width: calc(85% - 0.5rem);
-    margin-bottom: 0 !important;
+  max-width: calc(85% - 0.5rem);
+  margin-bottom: 0 !important;
 }
 
 .mv-new-action .error {
-    flex: 0 0 100%;
+  flex: 0 0 100%;
 
-    @apply w-full;
-    @apply mt-3;
-    @apply mb-0;
+  @apply w-full;
+  @apply mt-3;
+  @apply mb-0;
 }
 
 /* Errors */
 
 .mv-editmode .mv-editor span.error {
-    @apply block;
+  @apply block;
 
-    @apply text-red-400;
-    @apply text-xs;
-    @apply italic;
+  @apply text-red-400;
+  @apply text-xs;
+  @apply italic;
 
-    @apply mb-1;
+  @apply mb-1;
 }
