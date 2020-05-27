@@ -11,6 +11,7 @@ export default class ApplicationController extends Controller {
   @tracked displayHelpPopUp = false;
   @tracked displayExportImportPopUp = false;
   @tracked displaySettingsPopUp = false;
+  @tracked displayResetModelsPopUp = false;
 
   @action
   showHelpPopUp() {
@@ -40,6 +41,21 @@ export default class ApplicationController extends Controller {
   @action
   hideSettingsPopUp() {
     this.displaySettingsPopUp = false;
+  }
+
+  @action
+  showResetModelsPopUp() {
+    this.displayResetModelsPopUp = true;
+  }
+
+  @action
+  hideResetModelsPopUp() {
+    this.displayResetModelsPopUp = false;
+  }
+
+  @action
+  resetModels() {
+    this.modelStorage.resetModel()
   }
 
   @action

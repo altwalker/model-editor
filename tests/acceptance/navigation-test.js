@@ -57,5 +57,13 @@ pages.forEach((page) => {
       assert.dom('[data-test-settings-pop-up]').doesNotExist();
       assert.dom('[data-test-overlay-pop-up]').doesNotExist();
     });
+
+    test('it should display the reset models pop-up', async function(assert) {
+      assert.dom('[data-test-reset-models-pop-up]').doesNotExist();
+      assert.dom('[data-test-overlay-pop-up]').doesNotExist();
+      await click('[data-test-reset-models-button]');
+      assert.dom('[data-test-reset-models-pop-up]').exists();
+      assert.dom('[data-test-overlay-pop-up]').exists();
+    });
   });
 })

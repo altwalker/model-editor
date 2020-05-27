@@ -48,6 +48,10 @@ export default class ModelStorageService extends Service {
 
   modelChangeCalbacks = {};
 
+  resetModel() {
+    this.saveModel("model-storage", this.defaultModel)
+  }
+
   loadModel() {
     return localStorage.getItem("model") || this.defaultModel;
   }

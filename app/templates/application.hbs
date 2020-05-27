@@ -6,6 +6,7 @@
     @helpCallback={{this.showHelpPopUp}}
     @exportImportCallback={{this.showExportImportPopUp}}
     @settingsCallback={{this.showSettingsPopUp}}
+    @resetModelsCallback={{this.showResetModelsPopUp}}
 
     @currentPath={{this.router.currentRouteName}}
   />
@@ -27,4 +28,17 @@
 
 {{#if this.displaySettingsPopUp}}
   <PopUps::Settings @overlayCallback={{this.hideSettingsPopUp}} />
+{{/if}}
+
+{{#if this.displayResetModelsPopUp}}
+  <PopUps::Confirmation data-test-reset-models-pop-up
+    @acceptCallback={{this.resetModels}}
+    @cancelCallback={{this.hideResetModelsPopUp}}
+
+    @acceptMessage="Reset"
+    @cancelMessage="Cancel"
+  >
+    <p>Are you sure you want to reset the models?</p>
+    <p class="text-gray-600 text-xs italic my-2">You might lose your current models. Make sure to save your models before reseting.</p>
+  </PopUps::Confirmation>
 {{/if}}
