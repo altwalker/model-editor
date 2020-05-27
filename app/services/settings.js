@@ -1,5 +1,6 @@
 import Service from '@ember/service';
 import { A } from '@ember/array';
+import { bind } from '@ember/runloop';
 import { tracked } from '@glimmer/tracking';
 import { once } from '@ember/runloop';
 
@@ -111,18 +112,24 @@ export default class SettingsService extends Service {
     this.onGraphLayoutOptionsChange = handler;
   }
 
-  setTheme(theme) {
+  setTheme(theme, saveToLocalStorage=true) {
     this.callHandler("onThemeChange", theme);
 
     this.theme = theme;
-    localStorage.setItem("editorTheme", theme);
+
+    if (saveToLocalStorage) {
+      localStorage.setItem("editorTheme", theme);
+    }
   }
 
-  setFontSize(size) {
+  setFontSize(size, saveToLocalStorage=true) {
     this.callHandler("onFontSizeChange", size);
 
     this.fontSize = size;
-    localStorage.setItem("editorFontSize", size);
+
+    if (saveToLocalStorage) {
+      localStorage.setItem("editorFontSize", size);
+    }
   }
 
   convertGraphDirection(direction) {
@@ -130,30 +137,58 @@ export default class SettingsService extends Service {
     return graphDirectionsMap[direction] || graphDirectionsMap[this.defaultGraphDirection];
   }
 
-  setGraphDirection(direction) {
+  setGraphDirection(direction, saveToLocalStorage=true) {
     this.graphDirection = direction;
-    localStorage.setItem("graphDirection", direction);
+
+    if (saveToLocalStorage) {
+      localStorage.setItem("graphDirection", direction);
+    }
 
     this.callHandler("onGraphLayoutOptionsChange", this.getGraphLayoutOptions());
   }
 
-  setVertexSeparation(separation) {
-    this.vertexSeparation = separation;
-    localStorage.setItem("vertexSeparation", separation);
+  setVertexSeparation(separation, saveToLocalStorage=true) {
+    this.vertexSeparation = separation || this.defaultVertexSeparation;
+
+    if (saveToLocalStorage) {
+      localStorage.setItem("vertexSeparation", separation);
+    }
 
     this.callHandler("onGraphLayoutOptionsChange", this.getGraphLayoutOptions());
   }
 
-  setEdgeSeparation(separation) {
+  setEdgeSeparation(separation, saveToLocalStorage=true) {
     this.edgeSeparation = separation;
-    localStorage.setItem("edgeSeparation", separation);
+
+    if (saveToLocalStorage) {
+      localStorage.setItem("edgeSeparation", separation);
+    }
 
     this.callHandler("onGraphLayoutOptionsChange", this.getGraphLayoutOptions());
   }
 
-  setRankSeparation(separation) {
+  setRankSeparation(separation, saveToLocalStorage=true) {
     this.rankSeparation = separation;
-    localStorage.setItem("rankSeparation", separation);
+
+    if (saveToLocalStorage) {
+      localStorage.setItem("rankSeparation", separation);
+    }
+
+    this.callHandler("onGraphLayoutOptionsChange", this.getGraphLayoutOptions());
+  }
+
+  setGraphLayoutOptions(graphLayoutOptions, saveToLocalStorage=true) {
+    this.graphDirection = graphLayoutOptions["graphDirection"] || this.defaultGraphDirection;
+    this.vertexSeparation = graphLayoutOptions["vertexSeparation"] || this.defaultVertexSeparation;
+    this.edgeSeparation = graphLayoutOptions["edgeSeparation"] || this.defaultEdgeSeparation;
+    this.rankSeparation = graphLayoutOptions["rankSeparation"] || this.defaultRankSeparation;
+
+    if (saveToLocalStorage) {
+      localStorage.setItem("graphDirection", this.graphDirection);
+      localStorage.setItem("vertexSeparation", this.vertexSeparation);
+      localStorage.setItem("edgeSeparation", this.edgeSeparation);
+      localStorage.setItem("rankSeparation", this.rankSeparation);
+    }
 
     this.callHandler("onGraphLayoutOptionsChange", this.getGraphLayoutOptions());
   }
@@ -201,5 +236,35 @@ export default class SettingsService extends Service {
     this.setVertexSeparation(this.defaultVertexSeparation);
     this.setEdgeSeparation(this.defaultEdgeSeparation);
     this.setRankSeparation(this.defaultRankSeparation);
+  }
+
+  updateEditorSettings(saveToLocalStorage) {
+    this.setTheme(localStorage.getItem("editorTheme"), saveToLocalStorage);
+    this.setFontSize(localStorage.getItem("editorFontSize"), saveToLocalStorage);
+  }
+
+  updateVisualizerSettings(saveToLocalStorage) {
+    this.setGraphLayoutOptions({
+      "graphDirection": localStorage.getItem("graphDirection"),
+      "vertexSeparation": localStorage.getItem("vertexSeparation"),
+      "edgeSeparation": localStorage.getItem("edgeSeparation"),
+      "rankSeparation": localStorage.getItem("rankSeparation")
+    }, saveToLocalStorage);
+  }
+
+  createStorageHandler() {
+    this.storageHandler = bind(this, function(event) {
+      if (event.key === "editorTheme" || event.key === "editorFontSize") {
+        this.updateEditorSettings(false)
+      } else if (event.key === "graphDirection" || event.key === "vertexSeparation" || event.key === "edgeSeparation" || event.key === "rankSeparation") {
+        this.updateVisualizerSettings(false)
+      }
+    })
+
+    window.addEventListener('storage', this.storageHandler);
+  }
+
+  destroyStorageHandler() {
+    window.removeEventListener('storage', this.storageHandler)
   }
 }

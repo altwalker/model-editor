@@ -5,6 +5,8 @@ import { inject as service } from '@ember/service';
 
 export default class ApplicationController extends Controller {
   @service router;
+  @service modelStorage;
+  @service settings;
 
   @tracked displayHelpPopUp = false;
   @tracked displayExportImportPopUp = false;
@@ -38,5 +40,17 @@ export default class ApplicationController extends Controller {
   @action
   hideSettingsPopUp() {
     this.displaySettingsPopUp = false;
+  }
+
+  @action
+  createStorageHandler() {
+    this.modelStorage.createStorageHandler();
+    this.settings.createStorageHandler();
+  }
+
+  @action
+  destroyStorageHandler() {
+    this.modelStorage.destroyStorageHandler();
+    this.settings.destroyStorageHandler();
   }
 }
