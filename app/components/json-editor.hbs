@@ -1,4 +1,5 @@
 <Textarea id="json-editor" class="h-100 w-100" @value={{this.value}}
   {{did-insert this.createEditor}}
+  {{did-update this.updateEditor this.value}}
   {{will-destroy this.destroyEditor}}
 />

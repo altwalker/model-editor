@@ -72,11 +72,13 @@ export default class ModelViewerComponent extends Component {
     try {
       let jsonModels = JSON.parse(models);
 
-      visualizer.setModels(jsonModels);
-      ModelVisualizer.validate(jsonModels)
+      if (jsonModels !== visualizer.getModels()) {
+        visualizer.setModels(jsonModels);
+        ModelVisualizer.validate(jsonModels)
 
-      this.error = null;
-      this.modelStorage.setError(null)
+        this.error = null;
+        this.modelStorage.setError(null)
+      }
     } catch (error) {
       this.error = error;
       this.modelStorage.setError(error)

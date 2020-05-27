@@ -1,4 +1,7 @@
-<div>
+<div
+  {{did-insert this.createStorageHandler}}
+  {{will-destroy this.destroyStorageHandler}}
+>
   <HeaderBar
     @helpCallback={{this.showHelpPopUp}}
     @exportImportCallback={{this.showExportImportPopUp}}
