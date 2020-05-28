@@ -1,0 +1,31 @@
+{{!-- template-lint-disable no-invalid-meta --}}
+
+{{#if model.title}}
+  <title>{{model.title}}</title>
+  <meta property="og:title" content={{model.title}} />
+{{else}}
+  <title>Model-Editor - A web based editor for AltWalker and GraphWalker models.</title>
+  <meta property="og:title" content="Model-Editor - A web based editor for AltWalker and GraphWalker models." />
+{{/if}}
+
+<meta property="og:type" content="website" />
+
+{{#if model.url}}
+  <meta property="og:url" content="https://altom.gitlab.io/altwalker/model-editor/#/{{model.url}}" />
+{{else}}
+  <meta property="og:url" content="https://altom.gitlab.io/altwalker/model-editor/" />
+{{/if}}
+
+{{#if model.description}}
+  <meta name="description" content={{model.description}} />
+  <meta property="og:description" content={{model.description}} />
+{{else}}
+  <meta name="description" content="Create or edit your AltWalker and GraphWalker JSON models." />
+  <meta property="og:description" content="Create or edit your AltWalker and GraphWalker JSON models." />
+{{/if}}
+
+{{#if model.img}}
+  <meta property="og:image" content="{{rootURL}}screenshots/{{model.img}}" />
+{{else}}
+  <meta property="og:image" content="{{rootURL}}screenshots/screenshot.png" />
+{{/if}}
