@@ -10,10 +10,12 @@ module('Integration | Component | header-bar', function(hooks) {
     this.helpCallbackCalled = false;
     this.exportImportCallbackCalled = false;
     this.settingsCallbackCalled = false;
+    this.resetModelsCallbackCalled = false;
 
-    this.helpCallback = function() { this.set("helpCallbackCalled", true); }
+    this.helpCallback = () => { this.set("helpCallbackCalled", true); }
     this.exportImportCallback = () => { this.set("exportImportCallbackCalled", true); }
     this.settingsCallback = () => { this.set("settingsCallbackCalled", true); }
+    this.resetModelsCallback = () => { this.set("resetModelsCallbackCalled", true); }
   });
 
   test('it renders', async function(assert) {
@@ -22,6 +24,7 @@ module('Integration | Component | header-bar', function(hooks) {
         @helpCallback={{action this.helpCallback}}
         @exportImportCallback={{action this.exportImportCallback}}
         @settingsCallback={{action this.settingsCallback}}
+        @resetModelsCallback={{action this.resetModelsCallback}}
       />
     `);
 
@@ -34,6 +37,7 @@ module('Integration | Component | header-bar', function(hooks) {
         @helpCallback={{action this.helpCallback}}
         @exportImportCallback={{action this.exportImportCallback}}
         @settingsCallback={{action this.settingsCallback}}
+        @resetModelsCallback={{action this.resetModelsCallback}}
       />
     `);
 
@@ -48,6 +52,7 @@ module('Integration | Component | header-bar', function(hooks) {
         @helpCallback={{action this.helpCallback}}
         @exportImportCallback={{action this.exportImportCallback}}
         @settingsCallback={{action this.settingsCallback}}
+        @resetModelsCallback={{action this.resetModelsCallback}}
       />
     `);
 
@@ -62,11 +67,27 @@ module('Integration | Component | header-bar', function(hooks) {
         @helpCallback={{action this.helpCallback}}
         @exportImportCallback={{action this.exportImportCallback}}
         @settingsCallback={{action this.settingsCallback}}
+        @resetModelsCallback={{action this.resetModelsCallback}}
       />
     `);
 
     assert.notOk(this.settingsCallbackCalled);
     await click('[data-test-settings-button]');
     assert.ok(this.settingsCallbackCalled);
+  });
+
+  test('it should call the resetModelsCallback', async function(assert) {
+    await render(hbs`
+      <HeaderBar
+        @helpCallback={{action this.helpCallback}}
+        @exportImportCallback={{action this.exportImportCallback}}
+        @settingsCallback={{action this.settingsCallback}}
+        @resetModelsCallback={{action this.resetModelsCallback}}
+      />
+    `);
+
+    assert.notOk(this.resetModelsCallbackCalled);
+    await click('[data-test-reset-models-button]');
+    assert.ok(this.resetModelsCallbackCalled);
   });
 });

@@ -40,6 +40,12 @@
         >
           Export/Import
         </div>
+        <div role="button" class="p-3 hover:bg-gray-300" data-test-reset-models-button
+          {{on "click" @resetModelsCallback}}
+          {{on "touch" @resetModelsCallback}}
+        >
+          Reset Models
+        </div>
         <div role="button" class="p-3 hover:bg-gray-300" data-test-settings-button
           {{on "click" this.trackSettings}}
           {{on "touch" this.trackSettings}}
