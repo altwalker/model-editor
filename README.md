@@ -4,7 +4,7 @@ A web based editor for AltWalker and GraphWalker models.
 
 https://altom.gitlab.io/altwalker/model-editor
 
-![Screenshot](/public/screenshots/screenshot.png)
+![Screenshot](/public/assets/screenshots/screenshot.png)
 
 ## Prerequisites
 
