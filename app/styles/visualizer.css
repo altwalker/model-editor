@@ -191,6 +191,32 @@
   @apply border-gray-500;
 }
 
+/* Textarea */
+
+.mv-editmode .mv-editor textarea {
+  @apply appearance-none;
+  @apply block;
+  @apply w-full;
+
+  @apply bg-gray-100;
+  @apply text-gray-700;
+
+  @apply border;
+  @apply border-gray-400;
+  @apply rounded;
+
+  @apply py-2;
+  @apply px-4;
+
+  @apply leading-tight;
+}
+
+.mv-editmode .mv-editor textarea:focus {
+  @apply outline-none;
+  @apply bg-white;
+  @apply border-green-500;
+}
+
 /* Actions */
 
 .mv-edit-action {
@@ -202,66 +228,8 @@
   @apply border-gray-300;
 }
 
-.mv-added-action,
-.mv-new-action {
-  @apply w-full;
-  @apply mb-3;
-
-  @apply flex;
-  @apply flex-row;
-}
-
-.mv-added-action {
-  @apply flex-row-reverse;
-}
-
-.mv-new-action {
-  @apply flex-wrap;
-  @apply mt-6;
-}
-
-.mv-button-remove-action,
-.mv-button-add-action {
-  margin: 0 !important;
-  width: 15%;
-}
-
-.mv-button-remove-action  {
-  background-color: theme('colors.red.500') !important;
-}
-
-.mv-button-remove-action:hover  {
-  background-color: theme('colors.red.300') !important;
-}
-
-.mv-action {
-  @apply flex-1;
-
-  @apply bg-gray-300;
-  @apply text-black;
-
-  @apply border;
-  @apply border-gray-500;
-  @apply rounded;
-
-  @apply mr-2;
-  @apply py-1;
-  @apply px-4;
-}
-
-.mv-new-action > input {
-  @apply mr-2;
-
-  max-width: calc(85% - 0.5rem);
-  margin-bottom: 0 !important;
-}
-
-.mv-new-action .error {
-  flex: 0 0 100%;
-
-  @apply w-full;
-  @apply mt-3;
-  @apply mb-0;
+.mv-edit-action > textarea {
+  @apply mb-2;
 }
 
 /* Errors */
@@ -273,5 +241,6 @@
   @apply text-xs;
   @apply italic;
 
-  @apply mb-1;
+  @apply mt-2;
+  @apply mb-2;
 }
