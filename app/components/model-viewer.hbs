@@ -1,6 +1,6 @@
 <div class="h-main">
   <div id="model-viewer-error" class="{{unless this.error "hidden"}} w-full flex flex-col absolute {{if (eq this.error.name "PlottingError") "h-main bg-white"}}">
-    <ErrorAlert @error={{this.error}} class="{{if @editMode "error-alert-edit-mode" "error-alert"}}" />
+    <ErrorAlert @error={{this.error}} class="{{if @editMode "edit-mode-width" "error-alert"}}" />
 
     {{#if (eq this.error.name "PlottingError")}}
       <div class="flex-1 flex justify-center items-center">
@@ -13,11 +13,15 @@
     {{/if}}
   </div>
 
-  <div class="h-full {{if (eq this.error.name "PlottingError") "hidden"}}">
+  <div class="relative h-full {{if (eq this.error.name "PlottingError") "hidden"}}">
     <div id="visualizer"
       {{did-insert this.createModelViewer}}
       {{did-update this.updateEditMode @editMode}}
       {{will-destroy this.destroyModelViewer}}>
     </div>
+
+    {{#if (and @editMode this.displayHints)}}
+      <Hints @closeCallback={{fn this.setDisplayHints false}} class="absolute bottom-0 w-full edit-mode-width" />
+    {{/if}}
   </div>
 </div>

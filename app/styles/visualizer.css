@@ -16,6 +16,15 @@
 
 /* PopUp */
 
+.mv-overlay {
+  @apply fixed;
+
+  @apply w-screen;
+  @apply h-screen;
+
+  @apply top-z-index;
+}
+
 .mv-pop-up {
   width: 50%;
 }

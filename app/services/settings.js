@@ -54,6 +54,8 @@ export default class SettingsService extends Service {
   defaultTheme = "default";
   defaultFontSize = "1rem";
 
+  defaultDisplayHints = true;
+
   defaultGraphDirection = "Top-Bottom";
   defaultVertexSeparation = 50;
   defaultEdgeSeparation = 50;
@@ -78,6 +80,8 @@ export default class SettingsService extends Service {
   onThemeChange = null;
   onFontSizeChange = null;
 
+  onDisplayHintsChange = null;
+
   onGraphLayoutOptionsChange = null;
 
   constructor() {
@@ -90,6 +94,8 @@ export default class SettingsService extends Service {
     this.vertexSeparation = localStorage.getItem("vertexSeparation") || this.defaultVertexSeparation;
     this.edgeSeparation = localStorage.getItem("edgeSeparation") || this.defaultEdgeSeparation;
     this.rankSeparation = localStorage.getItem("rankSeparation") || this.defaultRankSeparation;
+
+    this.displayHints = localStorage.getItem("displayHints") ? localStorage.getItem("displayHints") === 'true' : this.defaultDisplayHints;
   }
 
   callHandler(handlerName) {
@@ -106,6 +112,10 @@ export default class SettingsService extends Service {
 
   setOnFontSizeChange(handler) {
     this.onFontSizeChange = handler;
+  }
+
+  setOnDisplayHintsChange(handler) {
+    this.onDisplayHintsChange = handler;
   }
 
   setOnGraphLayoutOptionsChange(handler) {
@@ -193,6 +203,16 @@ export default class SettingsService extends Service {
     this.callHandler("onGraphLayoutOptionsChange", this.getGraphLayoutOptions());
   }
 
+  setDisplayHints(displayHints, saveToLocalStorage=true) {
+    this.callHandler("onDisplayHintsChange", displayHints);
+
+    this.displayHints = displayHints;
+
+    if (saveToLocalStorage) {
+      localStorage.setItem("displayHints", displayHints);
+    }
+  }
+
   getTheme() {
     return this.theme || this.defaultTheme;
   }
@@ -224,6 +244,10 @@ export default class SettingsService extends Service {
       "edgeSeparation": this.getEdgeSeparation(),
       "rankSeparation": this.getRankSeparation()
     }
+  }
+
+  getDisplayHints() {
+    return this.displayHints;
   }
 
   resetEditorSettings() {

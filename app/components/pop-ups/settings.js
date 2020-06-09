@@ -77,6 +77,14 @@ export default class PopUpsSettingsComponent extends Component {
     return this.settings.maxRankSeparation;
   }
 
+  get displayHints() {
+    return this.settings.displayHints;
+  }
+
+  set displayHints(value) {
+    this.settings.setDisplayHints(value);
+  }
+
   @action
   hideSideBar() {
     this.hideSideBarCallback();
