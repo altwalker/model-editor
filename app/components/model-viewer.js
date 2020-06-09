@@ -9,6 +9,7 @@ export default class ModelViewerComponent extends Component {
   @service settings;
 
   @tracked error = null;
+  @tracked displayHints = this.settings.getDisplayHints();
 
   visualizer = null;
 
@@ -29,6 +30,9 @@ export default class ModelViewerComponent extends Component {
     this.settings.setOnGraphLayoutOptionsChange(setGraphLayoutOptions);
 
     this.setGraphLayoutOptions(this.settings.getGraphLayoutOptions());
+
+    const setDisplayHints = bind(this, this.get("setDisplayHints"));
+    this.settings.setOnDisplayHintsChange(setDisplayHints);
   }
 
   @action
@@ -107,5 +111,10 @@ export default class ModelViewerComponent extends Component {
     }
 
     visualizer.setGraphLayoutOptions(layoutOptions);
+  }
+
+  @action
+  setDisplayHints(value) {
+    this.displayHints = value;
   }
 }
