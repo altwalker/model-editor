@@ -39,15 +39,16 @@ export default class JsonEditorController extends Controller {
   @action
   dragmove(event) {
     if (this.dragging) {
-      let percentage = (event.pageX / window.innerWidth) * 100;
+      const pageX = event.pageX ? event.pageX : event.changedTouches[0].pageX
+      const percentage = (pageX / window.innerWidth) * 100;
 
       if (percentage > this.minPercentage && percentage < (100 - this.minPercentage)) {
-        let rightPercentage = 100 - 0.2 - percentage;
+        const rightPercentage = 100 - 0.2 - percentage;
 
         document.getElementById("left").style.width = percentage + "vw";
         document.getElementById("right").style.width = rightPercentage + "vw";
 
-        let error = document.getElementById("model-viewer-error")
+        const error = document.getElementById("model-viewer-error")
         if (error) {
           error.style.width = percentage + "vw";
         }

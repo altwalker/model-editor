@@ -5,6 +5,10 @@ import { setupApplicationTest } from 'ember-qunit';
 module('Acceptance | viewer', function(hooks) {
   setupApplicationTest(hooks);
 
+  hooks.afterEach(async function() {
+    localStorage.clear();
+  });
+
   test('visiting /viewer', async function(assert) {
     await visit('/viewer');
 
@@ -27,4 +31,40 @@ module('Acceptance | viewer', function(hooks) {
     await click('[data-test-view-button]')
     assert.equal(currentURL(), '/viewer');
   });
+
+  test('it should render the models from localStorage', async function(assert) {
+    const vertexId = 'test_vertex';
+    const edgeId = 'test_edge';
+
+    const models = {
+      name: "Test Models",
+      models: [
+        {
+          name: "TestModel",
+          generator: "random(never)",
+          startElementId: vertexId,
+          vertices: [
+            {
+              id: vertexId,
+              name: "test_vertex"
+            }
+          ],
+          edges: [
+            {
+              id: edgeId,
+              name: "text_edge",
+              sourceVertexId: vertexId,
+              targetVertexId: vertexId,
+            }
+          ]
+        }
+      ]
+    }
+
+    localStorage.setItem('model', JSON.stringify(models))
+    await visit('/viewer');
+
+    assert.dom(`#${vertexId}`).exists();
+    assert.dom(`#${edgeId}`).exists();
+  })
 });

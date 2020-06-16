@@ -1,19 +1,21 @@
 /* Fonts */
 
 .roboto-regular {
-    font-family: 'Roboto-Medium', sans-serif;
-    font-weight: 400;
+  font-family: 'Roboto-Medium', sans-serif;
+  font-weight: 400;
 }
 
 .roboto-medium {
-    font-family: 'Roboto-Medium', sans-serif;
-    font-weight: 500;
+  font-family: 'Roboto-Medium', sans-serif;
+  font-weight: 500;
 }
 
 .roboto-bold {
-    font-family: 'Roboto-Medium', sans-serif;
-    font-weight: 700;
+  font-family: 'Roboto-Medium', sans-serif;
+  font-weight: 700;
 }
 
-
-/* Headings */
+.inconsolata {
+  font-family: 'Inconsolata', monospace;
+  font-weight: 400;
+}

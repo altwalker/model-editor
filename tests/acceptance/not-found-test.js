@@ -2,7 +2,7 @@ import { module, test } from 'qunit';
 import { visit, currentURL, currentRouteName } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 
-module('Acceptance | not found', function(hooks) {
+module('Acceptance | not-found', function(hooks) {
   setupApplicationTest(hooks);
 
   test('visiting /not-found', async function(assert) {
