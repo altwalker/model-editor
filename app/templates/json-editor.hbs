@@ -11,7 +11,10 @@
     <ModelViewer class="h-main w-full" @editMode={{false}} />
   </div>
 
-  <div id="dragbar" class="h-main bg-gray-300" role="button" {{on "mousedown" this.dragstart}}>
+  <div id="dragbar" class="h-main bg-gray-300" role="button"
+    {{on "mousedown" this.dragstart}}
+    {{on "touchstart" this.dragstart}}
+  >
   </div>
 
   <div id="right" class="h-main">

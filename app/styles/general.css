@@ -1,95 +1,95 @@
 body {
-    min-height: 100vh;
-    height: 100%;
+  min-height: 100vh;
+  height: 100%;
 }
 
 .h-main {
-    /* Screen Size - Header Size - Footer Size */
-    height: calc(100vh - 3rem - 1.5rem);
+  /* Screen Size - Header Size - Footer Size */
+  height: calc(100vh - 3rem - 1.5rem);
 }
 
 .logo-gradient {
-    background-image: linear-gradient(to bottom, #33d669, #17ad38);
+  background-image: linear-gradient(to bottom, #33d669, #17ad38);
 }
 
 .top-z-index {
-    /* Above CodeMirror */
-    z-index: 999999;
+  /* Above CodeMirror */
+  z-index: 999999;
 }
 
 .bg-transparent-black {
-    background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 /* Key Text */
 
 .key {
-    font-family: 'Inconsolata', monospace;
+  @apply inconsolata;
 
-    @apply p-1;
-    @apply bg-gray-300;
+  @apply p-1;
+  @apply bg-gray-300;
 
-    @apply border;
-    @apply border-gray-500;
-    @apply rounded-sm;
+  @apply border;
+  @apply border-gray-500;
+  @apply rounded-sm;
 }
 
 /* Links */
 
 .external-link {
-    @apply text-blue-400;
+  @apply text-blue-400;
 }
 
 .external-link:hover {
-    @apply text-green-400;
+  @apply text-green-400;
 }
 
 /* Input Label */
 
 .input-label {
-    @apply text-xs;
-    @apply font-bold;
-    @apply uppercase;
-    @apply tracking-wide;
-    @apply text-gray-700;
+  @apply text-xs;
+  @apply font-bold;
+  @apply uppercase;
+  @apply tracking-wide;
+  @apply text-gray-700;
 }
 
 /* Select */
 
 .custom-select {
-    @apply bg-white;
+  @apply bg-white;
 
-    @apply border;
-    @apply border-gray-400;
+  @apply border;
+  @apply border-gray-400;
 
-    @apply rounded;
-    @apply shadow;
-    @apply leading-tight;
+  @apply rounded;
+  @apply shadow;
+  @apply leading-tight;
 
-    @apply py-1;
-    @apply pl-3;
-    @apply pr-8;
+  @apply py-1;
+  @apply pl-3;
+  @apply pr-8;
 
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
 
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2348bb78%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2348bb78%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
 	background-repeat: no-repeat, repeat;
 	background-position: right .7em top 50%, 0 0;
 	background-size: .65em auto, 100%;
 }
 
 .custom-select:hover {
-    @apply border-green-500;
+  @apply border-green-500;
 }
 
 .custom-select:focus {
-    @apply border;
-    @apply border-green-500;
+  @apply border;
+  @apply border-green-500;
 
-    @apply outline-none;
-    @apply shadow-none;
+  @apply outline-none;
+  @apply shadow-none;
 }
 
 /* Error Alert */
@@ -110,181 +110,183 @@ body {
 /* Dragbar */
 
 #left {
-    width: calc(70vw - .1vw);
+  width: calc(70vw - .1vw);
 }
 
 #right {
-    width: calc(30vw - .1vw);
+  width: calc(30vw - .1vw);
 }
 
 #dragbar {
-    width: .2vw;
-    cursor: col-resize;
-    z-index: 2;
+  width: .2vw;
+  cursor: col-resize;
+  z-index: 2;
 }
 
 /* Tooltip */
 
 .tooltip {
-    position: relative;
+  position: relative;
 }
 
 .tooltip .tooltiptext {
-    visibility: hidden;
+  visibility: hidden;
 
-    /* Position the tooltip */
-    position: absolute;
-    top: 150%;
-    left: -50%;
+  /* Position the tooltip */
+  position: absolute;
+  top: 150%;
+  left: -50%;
 
-    @apply px-2;
-    @apply text-xs;
-    @apply text-white;
-    @apply bg-gray-900;
-    @apply border;
-    @apply border-gray-200;
-    @apply top-z-index;
+  @apply px-2;
+  @apply text-xs;
+  @apply text-white;
+  @apply bg-gray-900;
+  @apply border;
+  @apply border-gray-200;
+  @apply top-z-index;
 }
 
 .tooltip:hover .tooltiptext {
-    animation: tooltip 1.5s linear 1;
+  animation: tooltip 1.5s linear 1;
 
-    visibility: visible;
+  visibility: visible;
 }
 
 @keyframes tooltip {
-    0%   {opacity: 0;}
-    25%  {opacity: 0;}
-    50%  {opacity: 0;}
-    75%  {opacity: 0;}
-    100% {opacity: 1;}
+  0%   {opacity: 0;}
+  25%  {opacity: 0;}
+  50%  {opacity: 0;}
+  75%  {opacity: 0;}
+  100% {opacity: 1;}
 }
 
 /* Dropdown */
 
 .dropdown {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .dropdown-content {
-    right: 0;
-    display: none;
-    position: absolute;
+  right: 0;
+  display: none;
+  position: absolute;
 }
 
 .dropdown:hover .dropdown-content {
-    display: block;
+  display: block;
 }
 
 /* File Input */
 
 #model-file-input {
-    opacity: 0;
-    position: absolute;
-    z-index: -1;
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
 }
 
 /* Range Slider */
 
 .range-slider {
-    -webkit-appearance: none;
-    appearance: none;
-    outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
 
-    height: 0.25rem;
+  height: 0.25rem;
 
-    @apply bg-gray-300;
+  @apply bg-gray-300;
 }
 
 .range-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
 
-    width: 15px;
-    height: 15px;
+  width: 15px;
+  height: 15px;
 
-    border-radius: 50%;
+  border-radius: 50%;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    @apply bg-green-500;
-
+  @apply bg-green-500;
 }
 
 .range-slider::-webkit-slider-thumb:hover {
-    @apply bg-green-400;
+  @apply bg-green-400;
 }
 
 .range-slider::-moz-range-thumb {
-    width: 1rem;
-    height: 1rem;
+  width: 1rem;
+  height: 1rem;
 
-    border-radius: 50%;
-    border: 0;
+  border-radius: 50%;
+  border: 0;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    @apply bg-green-500;
+  @apply bg-green-500;
 }
 
 .range-slider::-moz-range-thumb:hover {
-    @apply bg-green-400;
+  @apply bg-green-400;
 }
 
 /* Spining Animation */
 
 .spinning {
-    -webkit-animation-name: spin;
-    -webkit-animation-duration: 2000ms;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
-    -moz-animation-name: spin;
-    -moz-animation-duration: 2000ms;
-    -moz-animation-iteration-count: infinite;
-    -moz-animation-timing-function: linear;
-    -ms-animation-name: spin;
-    -ms-animation-duration: 2000ms;
-    -ms-animation-iteration-count: infinite;
-    -ms-animation-timing-function: linear;
-    animation-name: spin;
-    animation-duration: 2000ms;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+  -webkit-animation-name: spin;
+  -webkit-animation-duration: 2000ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+
+  -moz-animation-name: spin;
+  -moz-animation-duration: 2000ms;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+
+  -ms-animation-name: spin;
+  -ms-animation-duration: 2000ms;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-timing-function: linear;
+
+  animation-name: spin;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 
 @-ms-keyframes spin {
-    from {
-      -ms-transform: rotate(0deg);
-    }
-    to {
-      -ms-transform: rotate(360deg);
-    }
+  from {
+    -ms-transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+  }
 }
 
 @-moz-keyframes spin {
-    from {
-      -moz-transform: rotate(0deg);
-    }
-    to {
-      -moz-transform: rotate(360deg);
-    }
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+  }
 }
 
 @-webkit-keyframes spin {
-    from {
-      -webkit-transform: rotate(0deg);
-    }
-    to {
-      -webkit-transform: rotate(360deg);
-    }
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
