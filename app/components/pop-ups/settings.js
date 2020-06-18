@@ -13,6 +13,10 @@ export default class PopUpsSettingsComponent extends Component {
     return this.settings.themes;
   }
 
+  get graphRankers() {
+    return this.settings.graphRankers;
+  }
+
   get graphDirections() {
     return this.settings.graphDirections;
   }
@@ -23,6 +27,10 @@ export default class PopUpsSettingsComponent extends Component {
 
   get theme() {
     return this.settings.theme;
+  }
+
+  get graphRanker() {
+    return this.settings.graphRanker;
   }
 
   get graphDirection() {
@@ -98,6 +106,11 @@ export default class PopUpsSettingsComponent extends Component {
   @action
   selectFontSize(selected) {
     this.settings.setFontSize(selected);
+  }
+
+  @action
+  selectGraphRanker(selected) {
+    this.settings.setGraphRanker(selected);
   }
 
   @action

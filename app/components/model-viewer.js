@@ -18,7 +18,7 @@ export default class ModelViewerComponent extends Component {
     const setModels = bind(this, this.get("setModels"));
     this.modelStorage.setOnModelChange("visualizer", setModels);
 
-    this.visualizer = new ModelVisualizer({"container": "visualizer"});
+    this.visualizer = new ModelVisualizer({ "container": "visualizer" });
     this.updateEditMode();
 
     this.setModels(this.modelStorage.loadModel());
@@ -104,6 +104,7 @@ export default class ModelViewerComponent extends Component {
   setGraphLayoutOptions(options) {
     const visualizer = this.get("visualizer");
     const layoutOptions = {
+      "ranker": options["graphRanker"],
       "rankdir": options["graphDirection"],
       "nodesep": options["vertexSeparation"],
       "edgesep": options["edgeSeparation"],

@@ -46,6 +46,7 @@ module('Unit | Service | settings', function(hooks) {
 
   test('resetVisualizerSettings should reset graphDirectio, vertexSeparation, edgeSeparation and rankSeparation', function(assert) {
     let service = this.owner.lookup('service:settings');
+    service.graphRanker = null;
     service.graphDirection = null;
     service.vertexSeparation = null;
     service.edgeSeparation = null;
@@ -53,6 +54,7 @@ module('Unit | Service | settings', function(hooks) {
 
     service.resetVisualizerSettings();
 
+    assert.equal(service.graphRanker, service.defaultGraphRanker);
     assert.equal(service.graphDirection, service.defaultGraphDirection);
     assert.equal(service.vertexSeparation, service.defaultVertexSeparation);
     assert.equal(service.edgeSeparation, service.defaultEdgeSeparation);
@@ -165,6 +167,71 @@ module('Unit | Service | settings > fontSize', function(hooks) {
     });
 
     service.setFontSize(fontSize);
+  });
+});
+
+module('Unit | Service | settings > graphRanker', function(hooks) {
+  setupTest(hooks);
+
+  hooks.beforeEach(function() {
+    window.localStorage.clear();
+  });
+
+  test('it should load the default graphRanker if nothing is stored in localStorage', function(assert) {
+    let service = this.owner.lookup('service:settings');
+
+    const graphRanker = service.getGraphRanker();
+
+    assert.equal(service.get("defaultGraphRanker"), graphRanker);
+  });
+
+  test('it should load the graphRanker form localStorage', function(assert) {
+    const graphRanker = "Tight Tree";
+    window.localStorage.setItem("graphRanker", graphRanker);
+
+    let service = this.owner.lookup('service:settings');
+
+    assert.equal(service.getGraphRanker(), graphRanker);
+  });
+
+  test('it should set the graphRanker', function(assert) {
+    let service = this.owner.lookup('service:settings');
+    const graphRanker = "Tight Tree";
+
+    service.setGraphRanker(graphRanker);
+
+    assert.equal(service.get("graphRanker"), graphRanker);
+  });
+
+  test('it should save the graphRanker in localStorage', function(assert) {
+    let service = this.owner.lookup('service:settings');
+    const graphRanker = "Tight Tree";
+
+    service.setGraphRanker(graphRanker);
+
+    assert.equal(localStorage.getItem("graphRanker"), graphRanker);
+  });
+
+  test('it should call onGraphLayoutOptionsChange', function(assert) {
+    let service = this.owner.lookup('service:settings');
+    const graphRanker = "Tight Tree";
+
+    service.setOnGraphLayoutOptionsChange(function(graphLayoutOptions) {
+      assert.equal(graphLayoutOptions["graphRanker"], service.convertGraphRanker(graphRanker));
+    });
+
+    service.setGraphRanker(graphRanker);
+  });
+
+  test('it should map graphRankers correctly', function(assert) {
+    let service = this.owner.lookup('service:settings');
+
+    const graphRankers = service.get("graphRankers");
+    const graphRankersMap = service.get("graphRankersMap");
+
+    graphRankers.forEach(function(direction) {
+      assert.equal(service.convertGraphRanker(direction), graphRankersMap[direction]);
+    });
   });
 });
 
@@ -407,6 +474,7 @@ module('Unit | Service | settings > graphLayoutOptions', function(hooks) {
 
     const graphLayoutOptions = service.getGraphLayoutOptions();
     const defaultGraphLayoutOptions = {
+      "graphRanker": service.convertGraphRanker(service.get("defaultGraphRanker")),
       "graphDirection": service.convertGraphDirection(service.get("defaultGraphDirection")),
       "vertexSeparation": service.get("defaultVertexSeparation"),
       "edgeSeparation": service.get("defaultEdgeSeparation"),

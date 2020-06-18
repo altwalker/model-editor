@@ -14,10 +14,7 @@
       </div>
 
       <div class="w-full px-3">
-        <button type="button" class="bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-1 px-4 my-2 rounded focus:outline-none"
-          {{on "click" this.resetEditorSettings}}
-          {{on "touch" this.resetEditorSettings}}
-        >
+        <button type="button" class="bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-1 px-4 my-2 rounded focus:outline-none" {{on "click" this.resetEditorSettings}} {{on "touch" this.resetEditorSettings}}>
           Reset
         </button>
       </div>
@@ -33,13 +30,19 @@
         <Input id="graph-hints" @type="checkbox" name="graph-hints" @checked={{this.displayHints}} />
       </div>
 
+
+      <div class="w-full px-3 mb-1">
+        <label class="input-label mb-2 mr-2">Ranker:</label>
+        <SelectDropdown id="graph-ranker-select" class="mb-3" @onSelectCallback={{this.selectGraphRanker}} @items={{this.graphRankers}} @selectedItem={{this.graphRanker}} />
+      </div>
+
       <div class="w-full px-3 mb-1">
         <label class="input-label mb-2 mr-2">Graph Direction:</label>
         <SelectDropdown id="graph-direction-select" class="mb-3" @onSelectCallback={{this.selectGraphDirection}} @items={{this.graphDirections}} @selectedItem={{this.graphDirection}} />
       </div>
 
       <div class="w-full px-3">
-        <p class="input-label">Vertex Separation:  <span class="text-green-600 text-base ml-1">{{this.vertexSeparation}}</span></p>
+        <p class="input-label">Vertex Separation: <span class="text-green-600 text-base ml-1">{{this.vertexSeparation}}</span></p>
 
         <Input @type="range" @min={{this.minVertexSeparation}} @max={{this.maxVertexSeparation}} @value={{this.vertexSeparation}} @steps="1" @class="range-slider w-full" @input={{this.updteVertexSeparation}} />
 
@@ -63,10 +66,7 @@
       </div>
 
       <div class="w-full px-3">
-        <button type="button" class="bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-1 px-4 my-2 rounded focus:outline-none"
-          {{on "click" this.resetVisualizerSettings}}
-          {{on "touch" this.resetVisualizerSettings}}
-        >
+        <button type="button" class="bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-1 px-4 my-2 rounded focus:outline-none" {{on "click" this.resetVisualizerSettings}} {{on "touch" this.resetVisualizerSettings}}>
           Reset
         </button>
       </div>
