@@ -54,6 +54,7 @@
   @apply bg-white;
 
   @apply p-0;
+  @apply pb-48;
   @apply border-solid;
   @apply border-l;
   @apply border-gray-300;
@@ -130,6 +131,9 @@
 .mv-editmode .mv-editor select {
   @apply custom-select;
 
+  @apply bg-gray-100;
+  @apply text-gray-700;
+
   @apply outline-none;
   @apply shadow-none;
 
@@ -147,6 +151,8 @@
 .mv-editmode .mv-editor select:focus {
   @apply border;
   @apply border-green-500;
+
+  @apply bg-white;
 
   @apply outline-none;
   @apply shadow-none;
@@ -233,17 +239,14 @@
 
 /* Actions */
 
-.mv-edit-action {
+.mv-model-actions,
+.mv-edge-actions {
   @apply my-6;
   @apply pt-6;
 
   @apply border-solid;
   @apply border-t;
   @apply border-gray-300;
-}
-
-.mv-edit-action > textarea {
-  @apply mb-2;
 }
 
 /* Errors */
