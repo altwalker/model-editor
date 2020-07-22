@@ -3,6 +3,7 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default class PopUpsHelpComponent extends Component {
+  @service os;
   @service tracker;
 
   @action

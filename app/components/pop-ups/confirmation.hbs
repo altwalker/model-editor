@@ -4,14 +4,14 @@
   </div>
 
   <div class="flex my-1">
-    <button type="button" class="bg-green-500 hover:bg-green-400 text-white font-bold py-1 px-4 my-2 mr-2 rounded" data-test-accept-button
+    <button type="button" class="bg-red-500 hover:bg-red-400 text-white font-bold py-1 px-4 my-2 mr-2 rounded" data-test-accept-button
       {{on "click" this.acceptCallback}}
       {{on "touch" this.acceptCallback}}
     >
       {{this.acceptMessage}}
     </button>
 
-    <button type="button" class="bg-red-500 hover:bg-red-400 text-white font-bold py-1 px-4 m-2 rounded" data-test-cancel-button
+    <button type="button" class="bg-green-500 hover:bg-green-400 text-white font-bold py-1 px-4 m-2 rounded" data-test-cancel-button
       {{on "click" @cancelCallback}}
       {{on "touch" @cancelCallback}}
     >
