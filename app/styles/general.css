@@ -13,7 +13,10 @@ body {
 }
 
 .top-z-index {
-  /* Above CodeMirror */
+  z-index: 9999999;
+}
+
+.middle-z-index {
   z-index: 999999;
 }
 
@@ -94,17 +97,15 @@ body {
 
 /* Error Alert */
 
-.error-alert {
-  max-width: 100vw;
-}
-
-.edit-mode-width {
+.error-alert-edit-mode-width {
   /* Set max-width to not cover the editor form */
-  max-width: 70vw;
+  width: 70vw !important;;
 }
 
-#model-viewer-error {
-  width: calc(70vw - .1vw);
+/* Hint */
+
+.hint-edit-mode-width {
+  width: 70vw;
 }
 
 /* Dragbar */
