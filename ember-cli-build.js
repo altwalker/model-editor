@@ -7,17 +7,10 @@ const cssImport = require('postcss-import');
 module.exports = function(defaults) {
   let config = defaults.project.config(EmberApp.env());
 
-  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-  console.log("rootURL", config.rootURL)
-  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-
   let app = new EmberApp(defaults, {
     fingerprint: {
       exclude: [
-        'assets/screenshots/',
-        'apple-touch-icon',
-        'favicon',
-        'mstile'
+        'assets/screenshots/'
       ]
     },
     postcssOptions: {
@@ -33,7 +26,7 @@ module.exports = function(defaults) {
     'ember-cli-favicon': {
       iconPath: 'assets/icons/favicon.png',
       faviconsConfig: {
-        // path: config.rootURL
+        path: `/${config.rootURL}`
       }
     },
   });
