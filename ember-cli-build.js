@@ -5,9 +5,16 @@ const tailwindcss = require('tailwindcss');
 const cssImport = require('postcss-import');
 
 module.exports = function(defaults) {
+  let config = defaults.project.config(EmberApp.env());
+
   let app = new EmberApp(defaults, {
     fingerprint: {
-      exclude: ['assets/screenshots/']
+      exclude: [
+        'assets/screenshots/',
+        'apple-touch-icon',
+        'favicon',
+        'mstile'
+      ]
     },
     postcssOptions: {
       compile: {
@@ -22,7 +29,7 @@ module.exports = function(defaults) {
     'ember-cli-favicon': {
       iconPath: 'assets/icons/favicon.png',
       faviconsConfig: {
-        path: '/'
+        path: config.rootURL
       }
     },
   });
