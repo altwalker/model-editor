@@ -5,8 +5,6 @@ const tailwindcss = require('tailwindcss');
 const cssImport = require('postcss-import');
 
 module.exports = function(defaults) {
-  let config = defaults.project.config(EmberApp.env());
-
   let app = new EmberApp(defaults, {
     fingerprint: {
       exclude: ['assets/screenshots/']
