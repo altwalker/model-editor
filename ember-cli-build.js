@@ -24,7 +24,7 @@ module.exports = function(defaults) {
     'ember-cli-favicon': {
       iconPath: 'assets/icons/favicon.png',
       faviconsConfig: {
-        path: config.rootURL
+        path: '/'
       }
     },
   });
