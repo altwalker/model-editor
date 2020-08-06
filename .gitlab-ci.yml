@@ -5,7 +5,7 @@ stages:
   - build
   - deploy
 
-image: danlynn/ember-cli
+image: robert96/ember-js
 
 cache:
   key: "$CI_PIPELINE_ID"
