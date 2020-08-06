@@ -16,6 +16,7 @@ cache:
 install_dependencies:
   stage: dependencies
   script:
+    - npm update npm -g
     - npm install -g ember-cli
     - npm install --only=dev
     - npm update
