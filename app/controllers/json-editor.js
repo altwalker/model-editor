@@ -47,11 +47,6 @@ export default class JsonEditorController extends Controller {
 
         document.getElementById("left").style.width = percentage + "vw";
         document.getElementById("right").style.width = rightPercentage + "vw";
-
-        const error = document.getElementById("model-viewer-error")
-        if (error) {
-          error.style.width = percentage + "vw";
-        }
       }
     }
   }

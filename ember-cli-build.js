@@ -5,6 +5,8 @@ const tailwindcss = require('tailwindcss');
 const cssImport = require('postcss-import');
 
 module.exports = function(defaults) {
+  let config = defaults.project.config(EmberApp.env());
+
   let app = new EmberApp(defaults, {
     fingerprint: {
       exclude: ['assets/screenshots/']
@@ -18,7 +20,13 @@ module.exports = function(defaults) {
           tailwindcss('app/styles/tailwind.config.js'),
         ]
       }
-    }
+    },
+    'ember-cli-favicon': {
+      iconPath: 'assets/icons/favicon.png',
+      faviconsConfig: {
+        path: config.rootURL
+      }
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated

@@ -17,7 +17,7 @@
         <Icons::More @size="1.25rem" @color="#5F6369" />
       </div>
 
-      <div class="dropdown-content divide-y  border-l border-r border-b border-solid border-gray-300 top-z-index bg-white">
+      <div class="dropdown-content divide-y border-l border-r border-b border-solid border-gray-300 top-z-index bg-white">
         <LinkTo class={{if this.modelStorage.isPlottingError "cursor-not-allowed"}} data-test-view-button
           @route={{if (eq @currentPath "viewer") "visual-editor" "viewer"}}
           @disabled={{this.modelStorage.isPlottingError}}

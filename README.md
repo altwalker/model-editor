@@ -1,10 +1,14 @@
 # ModelEditor
 
-A web based editor for AltWalker and GraphWalker models.
+A web based editor and visualizer for AltWalker and GraphWalker models.
 
-https://altom.gitlab.io/altwalker/model-editor
+Visit the app at https://altom.gitlab.io/altwalker/model-editor.
 
-![Screenshot](/public/assets/screenshots/screenshot.png)
+![Screenshot](./public/assets/screenshots/screenshot.png)
+
+## Models Format
+
+For more informations about the models format you can visit [AltWalker documentation](https://altom.gitlab.io/altwalker/altwalker/modeling.html) or [Graphwalker documentation](https://github.com/GraphWalker/graphwalker-project/wiki/JSON-file-format).
 
 ## Prerequisites
 

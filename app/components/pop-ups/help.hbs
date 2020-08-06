@@ -1,69 +1,157 @@
 <PopUps::Overlay @overlayCallback={{@overlayCallback}} data-test-help-pop-up>
-  <h2 class="text-2xl mb-3 roboto-bold">Help</h2>
+  <div>
+    <h2 class="text-2xl mb-3 roboto-bold">Help</h2>
 
-  <p>
-    You can use this web-based editor to create, edit and visualize graphs for
+    <p>
+      You can use this web-based editor to create, edit and visualize graphs for
 
-    <a href="https://altom.gitlab.io/altwalker/altwalker/" class="external-link" target="_blank" rel="noreferrer noopener"
-      {{on "click" this.trackAltWalkerDocumentation}}
-      {{on "touch" this.trackAltWalkerDocumentation}}
-    >
-      AltWalker
-    </a>
-
-    or
-
-    <a href="http://graphwalker.github.io/" class="external-link" target="_blank" rel="noreferrer noopener"
-      {{on "click" this.trackGraphWalkerDocumentation}}
-      {{on "touch" this.trackGraphWalkerDocumentation}}
-    >
-      GraphWalker
-    </a>,
-
-    which are model based testing frameworks.</p>
-
-  <h3 class="text-xl my-5 roboto-medium">Shortcuts for JSON Editor</h3>
-
-  <ul class="pl-2 list-disc list-inside">
-    <li class="p-1">
-      Autocomplete: <span class="key">Ctrl</span> + <span class="key">Space</span>
-    </li>
-    <li class="p-1">
-      Snippets (Model, Vertex, Edge): <span class="key">Ctrl</span> + <span class="key">E</span>
-    </li>
-  </ul>
-
-  <h3 class="text-xl my-5 roboto-medium">Support</h3>
-
-  <p>If you have any questions or feedback join our Gitter chat room
-    <a href="https://gitter.im/altwalker/community" class="external-link" target="_blank" rel="noopener noreferrer"
-      {{on "click" this.trackGitter}}
-      {{on "touch" this.trackGitter}}
-    >
-      here
-    </a>
-    to chat with us or with other members of the community.
-  </p>
-
-  <h3 class="text-xl my-5 roboto-medium">Further Reading/Useful Links</h3>
-
-  <ul class="pl-2 list-disc list-inside">
-    <li>
       <a href="https://altom.gitlab.io/altwalker/altwalker/" class="external-link" target="_blank" rel="noreferrer noopener"
         {{on "click" this.trackAltWalkerDocumentation}}
         {{on "touch" this.trackAltWalkerDocumentation}}
       >
-        AltWalker Documentation
+        AltWalker
       </a>
-    </li>
-    <li>
+
+      or
+
       <a href="http://graphwalker.github.io/" class="external-link" target="_blank" rel="noreferrer noopener"
         {{on "click" this.trackGraphWalkerDocumentation}}
         {{on "touch" this.trackGraphWalkerDocumentation}}
       >
-        GraphWalker Documentation
+        GraphWalker
       </a>
-    </li>
-    <li><a href="https://gitlab.com/altom/altwalker/model-editor" class="external-link" target="_blank" rel="noreferrer noopener">Model-Editor Source Code</a></li>
-  </ul>
+
+      , which are model based testing frameworks.</p>
+  </div>
+
+  <div>
+    <h3 class="text-xl my-5 roboto-medium">Models Format</h3>
+
+    <p>
+      For more informations about the models format you can visit
+
+      <a href="https://altom.gitlab.io/altwalker/altwalker/modeling.html" class="external-link" target="_blank" rel="noreferrer noopener">
+        AltWalker documentation
+      </a>
+
+      or
+
+      <a href="https://github.com/GraphWalker/graphwalker-project/wiki/JSON-file-format" class="external-link" target="_blank" rel="noreferrer noopener">
+        GraphWalker documentation
+      </a>.
+    </p>
+  </div>
+
+  <div>
+    <h3 class="text-xl my-5 roboto-medium">JSON Editor Shortcuts</h3>
+
+    <table class="table-auto">
+      <thead>
+        <tr>
+          <th class="border px-4 py-2">Description</th>
+          <th class="border px-4 py-2">Shortcuts</th>
+        </tr>
+      </thead>
+      <tbody class="roboto-regular">
+        <tr class="bg-gray-100">
+          <th class="border px-4 py-2 roboto-regular">Autocomplete</th>
+          <th class="border px-4 py-2 roboto-regular"><span class="key">Ctrl</span> - <span class="key">Space</span></th>
+        </tr>
+        <tr>
+          <th class="border px-4 py-2 roboto-regular">Snippets</th>
+          <th class="border px-4 py-2 roboto-regular"><span class="key">Ctrl</span> - <span class="key">E</span></th>
+        </tr>
+        <tr class="bg-gray-100">
+          <th class="border px-4 py-2 roboto-regular">Undo</th>
+          <th class="border px-4 py-2 roboto-regular"><span class="key">{{if this.os.isMacOs "⌘" "Ctrl"}}</span> - <span class="key">Z</span></th>
+        </tr>
+        <tr>
+          <th class="border px-4 py-2 roboto-regular">Redo</th>
+          <th class="border px-4 py-2 roboto-regular"><span class="key">{{if this.os.isMacOs "⌘" "Ctrl"}}</span> - <span class="key">Shift</span> - <span class="key">Z</span></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <h3 class="text-xl my-5 roboto-medium">Visual Editor Actions</h3>
+
+    <table class="table-auto">
+      <thead>
+        <tr>
+          <th class="border px-4 py-2">Description</th>
+          <th class="border px-4 py-2">Action</th>
+        </tr>
+      </thead>
+      <tbody class="roboto-regular">
+        <tr class="bg-gray-100">
+          <th class="border px-4 py-2 roboto-regular">Create a new vertex</th>
+          <th class="border px-4 py-2 roboto-regular">Double click.</th>
+        </tr>
+        <tr>
+          <th class="border px-4 py-2 roboto-regular">Create a new edge</th>
+          <th class="border px-4 py-2 roboto-regular">Click and drag from two vertices.</th>
+        </tr>
+        <tr class="bg-gray-100">
+          <th class="border px-4 py-2 roboto-regular">Select a vertex</th>
+          <th class="border px-4 py-2 roboto-regular">Click on a vertex's node to select it.</th>
+        </tr>
+        <tr>
+          <th class="border px-4 py-2 roboto-regular">Select an edge</th>
+          <th class="border px-4 py-2 roboto-regular">Click on an edge's arrow or name to select it.</th>
+        </tr>
+        <tr class="bg-gray-100">
+          <th class="border px-4 py-2 roboto-regular">Remove an element</th>
+          <th class="border px-4 py-2 roboto-regular">Press <span class="key">Delete</span> or <span class="key">Backspace</span> to remove the selected element.</th>
+        </tr>
+        <tr>
+          <th class="border px-4 py-2 roboto-regular">Undo</th>
+          <th class="border px-4 py-2 roboto-regular">Press <span class="key">{{if this.os.isMacOs "⌘" "Ctrl"}}</span> - <span class="key">Z</span> to undo the last change.</th>
+        </tr>
+        <tr class="bg-gray-100">
+          <th class="border px-4 py-2 roboto-regular">Redo</th>
+          <th class="border px-4 py-2 roboto-regular">Press <span class="key">{{if this.os.isMacOs "⌘" "Ctrl"}}</span> - <span class="key">Shift</span> - <span class="key">Z</span> to redo the last change.</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <h3 class="text-xl my-5 roboto-medium">Support</h3>
+
+    <p>If you have any questions or feedback join our Gitter chat room
+      <a href="https://gitter.im/altwalker/community" class="external-link" target="_blank" rel="noopener noreferrer"
+        {{on "click" this.trackGitter}}
+        {{on "touch" this.trackGitter}}
+      >
+        here
+      </a>
+      to chat with us or with other members of the community.
+    </p>
+  </div>
+
+  <div class="mb-6">
+    <h3 class="text-xl my-5 roboto-medium">Further Reading/Useful Links</h3>
+
+    <ul class="pl-2 list-disc list-inside">
+      <li>
+        <a href="https://altom.gitlab.io/altwalker/altwalker/" class="external-link" target="_blank" rel="noreferrer noopener"
+          {{on "click" this.trackAltWalkerDocumentation}}
+          {{on "touch" this.trackAltWalkerDocumentation}}
+        >
+          AltWalker Documentation
+        </a>
+      </li>
+      <li>
+        <a href="http://graphwalker.github.io/" class="external-link" target="_blank" rel="noreferrer noopener"
+          {{on "click" this.trackGraphWalkerDocumentation}}
+          {{on "touch" this.trackGraphWalkerDocumentation}}
+        >
+          GraphWalker Documentation
+        </a>
+      </li>
+      <li><a href="https://marketplace.visualstudio.com/items?itemName=Altom.altwalker-model-visualizer" class="external-link" target="_blank" rel="noreferrer noopener">Model-Visualizer VS Code Extension</a></li>
+      <li><a href="https://gitlab.com/altom/altwalker/model-editor" class="external-link" target="_blank" rel="noreferrer noopener">Model-Editor Source Code</a></li>
+    </ul>
+  </div>
 </PopUps::Overlay>
