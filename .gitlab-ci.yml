@@ -18,7 +18,6 @@ install_dependencies:
   script:
     - npm update npm -g
     - npm install --only=dev
-    - npm update
 
 lint:
   stage: lint
