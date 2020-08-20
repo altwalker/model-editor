@@ -280,13 +280,15 @@
 /* Help Tooltips */
 
 .mv-help-tooltip .mv-help-tooltip-text {
-  width: 20vw;
-  margin-left: -5vw !important;
+  width: 15vw;
+  margin-left: -15px !important;
+
+  overflow-wrap: break-word;
   text-align: left;
 }
 
 .mv-help-tooltip .mv-help-tooltip-text::after {
-  left: 25%;
+  left: 15px;
 }
 
 .mv-help-tooltip svg {
