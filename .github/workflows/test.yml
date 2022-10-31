@@ -32,11 +32,11 @@ jobs:
 
     - uses: actions/setup-node@v3
       with:
-        node-version: 16
+        node-version: 12
 
     - name: Install npm dependencies
       run: |
-        npm install -g ember-cli@3.17
+        npm install -g ember-cli@3.25
         npm install
 
     - name: Run tests
@@ -52,11 +52,11 @@ jobs:
 
     - uses: actions/setup-node@v3
       with:
-        node-version: 16
+        node-version: 12
 
     - name: Install npm dependencies
       run: |
-        npm install -g ember-cli@3.17
+        npm install -g ember-cli@3.25
         npm install
 
     - name: Build
