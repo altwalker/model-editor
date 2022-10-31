@@ -2,13 +2,13 @@
 
 A web based editor and visualizer for AltWalker and GraphWalker models.
 
-Visit the app at https://altom.gitlab.io/altwalker/model-editor.
+Visit the app at https://altwalker.github.io/model-editor.
 
 ![Screenshot](./public/assets/screenshots/screenshot.png)
 
 ## Models Format
 
-For more informations about the models format you can visit [AltWalker documentation](https://altom.gitlab.io/altwalker/altwalker/modeling.html) or [Graphwalker documentation](https://github.com/GraphWalker/graphwalker-project/wiki/JSON-file-format).
+For more information about the models format you can visit the [AltWalker documentation](https://altwalker.github.io/altwalker/core/modeling.html) or [Graphwalker documentation](https://github.com/GraphWalker/graphwalker-project/wiki/JSON-file-format).
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
-* `git clone https://gitlab.com/altom/altwalker/model-editor.git`
+* `git clone https://github.com/altwalker/model-editor.git`
 * `cd model-editor`
 * `npm install`
 
@@ -60,15 +60,11 @@ $ ember generate component my-component -gc
 
 ### Deploying
 
-Check the [.gitlab-ci.yml](.gitlab-ci.yml) file.
+Check the [deploy.yml](.github/workflows/deploy.yml) file.
 
 ## Support
 
-Join our Gitter chat room [here](https://gitter.im/altwalker/community) to chat with us or with other members of the community.
-
-## License
-
-Model-Editor is licensed under the GNU General Public License v3.0.
+Join our [Gitter chat room](https://gitter.im/altwalker/community) or our [Google Group](https://groups.google.com/g/altwalker) to chat with us or with other members of the community.
 
 ## Further Reading/Useful Links
 
@@ -77,3 +73,7 @@ Model-Editor is licensed under the GNU General Public License v3.0.
 * Development Browser Extensions
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+
+## License
+
+Model-Editor is licensed under the [GNU General Public License v3.0](LICENSE).
