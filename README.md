@@ -76,4 +76,4 @@ Join our [Gitter chat room](https://gitter.im/altwalker/community) or our [Googl
 
 ## License
 
-Model-Editor is licensed under the [GNU General Public License v3.0](LICENSE).
+This project is licensed under the [GNU General Public License v3.0](LICENSE).
