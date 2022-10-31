@@ -4,7 +4,7 @@ A web based editor and visualizer for AltWalker and GraphWalker models.
 
 Visit the app at https://altwalker.github.io/model-editor.
 
-![Screenshot](./public/assets/screenshots/screenshot.png)
+![Screenshot](./public/assets/screenshots/github.png)
 
 ## Models Format
 
