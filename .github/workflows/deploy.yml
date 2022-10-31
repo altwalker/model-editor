@@ -1,4 +1,4 @@
-name: Docs
+name: Deploy
 
 on:
   push:
@@ -7,7 +7,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    needs: tests
 
     steps:
       - uses: actions/checkout@v3
