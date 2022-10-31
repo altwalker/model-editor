@@ -22,7 +22,7 @@ jobs:
 
       - name: Build
         run: |
-          ember build
+          ember build --environment production
 
       - name: Upload build
         if: github.ref == 'refs/heads/main'
