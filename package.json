@@ -1,6 +1,6 @@
 {
   "name": "model-editor",
-  "version": "0.0.0",
+  "version": "0.3.7",
   "private": true,
   "description": "A web based editor and visualizer for models written using the GraphWalker JSON format.",
   "repository": "",
